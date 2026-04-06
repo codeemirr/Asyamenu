@@ -5,15 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asya Menü - QR Menü</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #1a1a1a; color: #f4f4f4; margin: 0; padding: 15px; line-height: 1.6; }
-        .container { max-width: 600px; margin: auto; background: #262626; padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        h1 { text-align: center; color: #ffcc00; font-size: 2em; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 2px; }
-        p.subtitle { text-align: center; color: #bbb; margin-bottom: 30px; font-style: italic; }
-        h2 { background: #d32f2f; color: white; padding: 12px; border-radius: 10px; font-size: 1.1em; margin-top: 25px; text-align: center; display: block; clear: both; }
-        .item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #444; padding: 12px 5px; transition: 0.3s; }
-        .item:hover { background: #333; border-radius: 8px; }
+        /* Genel Tasarım */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #1a1a1a; 
+            color: #f4f4f4; 
+            margin: 0; 
+            padding: 15px; 
+            line-height: 1.6; 
+            padding-bottom: 80px; /* Butonun üstüne binmemesi için alt boşluk */
+        }
+        .container { 
+            max-width: 600px; 
+            margin: auto; 
+            background: #262626; 
+            padding: 20px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+        }
+        h1 { 
+            text-align: center; 
+            color: #ffcc00; 
+            font-size: 2em; 
+            margin-bottom: 5px; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+        }
+        p.subtitle { 
+            text-align: center; 
+            color: #bbb; 
+            margin-bottom: 30px; 
+            font-style: italic; 
+        }
+        h2 { 
+            background: #d32f2f; 
+            color: white; 
+            padding: 12px; 
+            border-radius: 10px; 
+            font-size: 1.1em; 
+            margin-top: 25px; 
+            text-align: center; 
+        }
+        .item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 1px solid #444; 
+            padding: 12px 5px; 
+        }
         .item-name { font-weight: 500; font-size: 1.05em; }
         .price { font-weight: bold; color: #4caf50; font-size: 1.1em; white-space: nowrap; }
+        
+        /* SABİT SİPARİŞ BUTONU */
+        .order-button {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%); /* Ekranın tam ortasında durması için */
+            background-color: #25d366; 
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 80%;
+            max-width: 300px;
+            justify-content: center;
+        }
+        .order-button:active {
+            transform: translateX(-50%) scale(0.95);
+        }
         .footer { text-align: center; margin-top: 40px; font-size: 0.8em; color: #777; }
     </style>
 </head>
@@ -48,5 +115,10 @@
             &copy; 2026 Asya Menü - Kemer Smart Guide
         </div>
     </div>
+
+    <a href="tel:+905XXXXXXXXX" class="order-button">
+        📞 HEMEN SİPARİŞ VER
+    </a>
+
 </body>
 </html>
