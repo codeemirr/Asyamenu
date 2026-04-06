@@ -1,124 +1,372 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asya Menü - QR Menü</title>
-    <style>
-        /* Genel Tasarım */
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background-color: #1a1a1a; 
-            color: #f4f4f4; 
-            margin: 0; 
-            padding: 15px; 
-            line-height: 1.6; 
-            padding-bottom: 80px; /* Butonun üstüne binmemesi için alt boşluk */
-        }
-        .container { 
-            max-width: 600px; 
-            margin: auto; 
-            background: #262626; 
-            padding: 20px; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
-        }
-        h1 { 
-            text-align: center; 
-            color: #ffcc00; 
-            font-size: 2em; 
-            margin-bottom: 5px; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-        }
-        p.subtitle { 
-            text-align: center; 
-            color: #bbb; 
-            margin-bottom: 30px; 
-            font-style: italic; 
-        }
-        h2 { 
-            background: #d32f2f; 
-            color: white; 
-            padding: 12px; 
-            border-radius: 10px; 
-            font-size: 1.1em; 
-            margin-top: 25px; 
-            text-align: center; 
-        }
-        .item { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-bottom: 1px solid #444; 
-            padding: 12px 5px; 
-        }
-        .item-name { font-weight: 500; font-size: 1.05em; }
-        .price { font-weight: bold; color: #4caf50; font-size: 1.1em; white-space: nowrap; }
-        
-        /* SABİT SİPARİŞ BUTONU */
-        .order-button {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%); /* Ekranın tam ortasında durması için */
-            background-color: #25d366; 
-            color: white;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2em;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            width: 80%;
-            max-width: 300px;
-            justify-content: center;
-        }
-        .order-button:active {
-            transform: translateX(-50%) scale(0.95);
-        }
-        .footer { text-align: center; margin-top: 40px; font-size: 0.8em; color: #777; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Asya 01 Ocakbaşı - Menü</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --bg:#0d0d0d;--card:#1a1a1a;--card-hover:#222;
+  --gold:#d4a853;--gold-light:#e8c97a;
+  --red:#c0392b;--red-light:#e74c3c;
+  --text:#f0e6d3;--text-dim:#8a8278;--border:#2a2520;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);color:var(--text);
+  min-height:100vh;padding-bottom:80px;
+  -webkit-font-smoothing:antialiased;
+}
+
+.header{
+  position:sticky;top:0;z-index:100;
+  background:linear-gradient(180deg,#0d0d0d 0%,rgba(13,13,13,0.97) 100%);
+  backdrop-filter:blur(12px);
+  padding:16px 0 0 0;
+  border-bottom:1px solid var(--border);
+}
+
+.logo-area{text-align:center;padding:0 16px 12px}
+
+.logo-area h1{
+  font-family:'Playfair Display',serif;
+  font-size:1.5rem;color:var(--gold);
+  letter-spacing:2px;text-transform:uppercase;
+}
+
+.logo-area .subtitle{
+  font-size:0.65rem;color:var(--text-dim);
+  letter-spacing:5px;text-transform:uppercase;margin-top:2px;
+}
+
+.nav-scroll{
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;padding:0 12px 12px;
+  display:flex;gap:6px;
+}
+.nav-scroll::-webkit-scrollbar{display:none}
+
+.nav-btn{
+  flex-shrink:0;padding:8px 16px;
+  border:1px solid var(--border);border-radius:24px;
+  background:transparent;color:var(--text-dim);
+  font-family:'Poppins',sans-serif;font-size:0.75rem;
+  font-weight:500;cursor:pointer;transition:all 0.3s ease;
+  white-space:nowrap;letter-spacing:0.5px;
+}
+
+.nav-btn.active,.nav-btn:hover{
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+  color:#0d0d0d;border-color:var(--gold);font-weight:600;
+  box-shadow:0 2px 12px rgba(212,168,83,0.25);
+}
+
+.menu-container{max-width:600px;margin:0 auto;padding:16px}
+
+.category-section{margin-bottom:32px}
+
+.category-title{
+  font-family:'Playfair Display',serif;font-size:1.2rem;
+  color:var(--gold);padding-bottom:10px;margin-bottom:14px;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:10px;
+}
+
+.category-title .icon{font-size:1.1rem}
+
+.menu-item{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  padding:12px 14px;margin-bottom:6px;
+  background:var(--card);border-radius:10px;
+  border:1px solid transparent;transition:all 0.25s ease;
+}
+
+.menu-item:hover{border-color:var(--border);background:var(--card-hover)}
+
+.item-info{flex:1;padding-right:12px}
+
+.item-name-tr{font-size:0.85rem;font-weight:500;color:var(--text);line-height:1.3}
+
+.item-name-sub{font-size:0.65rem;color:var(--text-dim);margin-top:2px;line-height:1.3}
+
+.item-price{
+  font-family:'Playfair Display',serif;font-size:0.95rem;
+  color:var(--gold);font-weight:700;white-space:nowrap;padding-top:2px;
+}
+
+.call-btn{
+  position:fixed;bottom:0;left:0;right:0;z-index:200;
+  padding:12px 16px;
+  padding-bottom:max(12px,env(safe-area-inset-bottom));
+  background:linear-gradient(180deg,transparent,rgba(13,13,13,0.9) 20%,#0d0d0d 40%);
+}
+
+.call-btn a{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;max-width:600px;margin:0 auto;padding:14px;
+  background:linear-gradient(135deg,var(--red),var(--red-light));
+  color:#fff;text-decoration:none;border-radius:14px;
+  font-family:'Poppins',sans-serif;font-size:0.95rem;
+  font-weight:600;letter-spacing:1.5px;
+  box-shadow:0 4px 20px rgba(192,57,43,0.4);
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+
+.call-btn a:active{transform:scale(0.97);box-shadow:0 2px 10px rgba(192,57,43,0.3)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.menu-item{animation:fadeUp 0.4s ease both}
+
+@media(min-width:768px){
+  .logo-area h1{font-size:2rem}
+  .menu-item{padding:14px 18px}
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>ASYA MENÜ</h1>
-        <p class="subtitle">Afiyet Olsun / Bon Appétit / Приятного аппетита</p>
-        
-        <h2>KAHVALTI ÇEŞİTLERİMİZ</h2>
-        <div class="item"><span>KAHVALTI TABAĞI</span><span class="price">300,00 ₺</span></div>
-        <div class="item"><span>PEYNİRLİ OMLET</span><span class="price">190,00 ₺</span></div>
-        <div class="item"><span>KARIŞIK OMLET</span><span class="price">230,00 ₺</span></div>
-        <div class="item"><span>SUCUKLU YUMURTA</span><span class="price">250,00 ₺</span></div>
 
-        <h2>ÇORBA ÇEŞİTLERİMİZ</h2>
-        <div class="item"><span>MERCİMEK ÇORBASI</span><span class="price">150,00 ₺</span></div>
-        <div class="item"><span>TAVUK ÇORBASI</span><span class="price">160,00 ₺</span></div>
+<div class="header">
+  <div class="logo-area">
+    <h1>🔥 Asya 01 Ocakbaşı</h1>
+    <p class="subtitle">Kemer • Est. 2026</p>
+  </div>
+  <div class="nav-scroll" id="navScroll">
+    <button class="nav-btn active" data-target="kahvalti">☀️ Kahvaltı</button>
+    <button class="nav-btn" data-target="corbalar">🍲 Çorbalar</button>
+    <button class="nav-btn" data-target="makarnalar">🍝 Makarnalar</button>
+    <button class="nav-btn" data-target="pizza">🍕 Pizza</button>
+    <button class="nav-btn" data-target="durumler">🌯 Dürümler</button>
+    <button class="nav-btn" data-target="salatalar">🥗 Salatalar & Mezeler</button>
+    <button class="nav-btn" data-target="tavuk">🍗 Tavuk Yemekleri</button>
+    <button class="nav-btn" data-target="kizartmalar">🍟 Kızartmalar</button>
+    <button class="nav-btn" data-target="et">🥩 Et Yemekleri</button>
+    <button class="nav-btn" data-target="vejetaryen">🥦 Vejetaryen</button>
+    <button class="nav-btn" data-target="tatlilar">🍮 Tatlılar</button>
+    <button class="nav-btn" data-target="soguk">🧊 Soğuk İçecekler</button>
+    <button class="nav-btn" data-target="sicak">☕ Sıcak İçecekler</button>
+  </div>
+</div>
 
-        <h2>PİZZA ÇEŞİTLERİ</h2>
-        <div class="item"><span>KARIŞIK PİZZA</span><span class="price">350,00 ₺</span></div>
-        <div class="item"><span>TAVUKLU PİZZA</span><span class="price">380,00 ₺</span></div>
-        <div class="item"><span>SUCUKLU PİZZA</span><span class="price">320,00 ₺</span></div>
-        <div class="item"><span>MARGARİTA PİZZA</span><span class="price">300,00 ₺</span></div>
+<div class="menu-container">
 
-        <h2>DÜRÜM ÇEŞİTLERİMİZ</h2>
-        <div class="item"><span>ADANA DÜRÜM</span><span class="price">200,00 ₺</span></div>
-        <div class="item"><span>KUZU ŞİŞ DÜRÜM</span><span class="price">270,00 ₺</span></div>
-        <div class="item"><span>URFA DÜRÜM</span><span class="price">220,00 ₺</span></div>
-        <div class="item"><span>KÖFTE DÜRÜM</span><span class="price">200,00 ₺</span></div>
+  <!-- KAHVALTI -->
+  <div class="category-section" id="kahvalti">
+    <div class="category-title"><span class="icon">☀️</span> Kahvaltı Çeşitlerimiz</div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kahvaltı Tabağı</div><div class="item-name-sub">Breakfast Plate</div></div><div class="item-price">₺300</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Peynirli Omlet</div><div class="item-name-sub">Cheese Omlet</div></div><div class="item-price">₺190</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Karışık Omlet</div><div class="item-name-sub">Mixed Omelette</div></div><div class="item-price">₺230</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Sucuklu Yumurta</div><div class="item-name-sub">Egg with Sausage</div></div><div class="item-price">₺250</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Ekmek Arası Sucuk</div><div class="item-name-sub">Sausage Between Bread</div></div><div class="item-price">₺250</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Menemen</div><div class="item-name-sub">Menemen</div></div><div class="item-price">₺200</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Menemen Sucuklu</div><div class="item-name-sub">Menemen with Sausage</div></div><div class="item-price">₺230</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Sahanda Yumurta</div><div class="item-name-sub">Fried Eggs</div></div><div class="item-price">₺180</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kaşar Peynirli Tost</div><div class="item-name-sub">Cheese Toast</div></div><div class="item-price">₺130</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Karışık Tost</div><div class="item-name-sub">Mixed Toast</div></div><div class="item-price">₺130</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Yum. Sucuklu Kaşar Peynirli Tost</div><div class="item-name-sub">Cheese Toast with Egg and Sausage</div></div><div class="item-price">₺180</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kıymalı Yumurta</div><div class="item-name-sub">Egg with Minced Meat</div></div><div class="item-price">₺300</div></div>
+  </div>
 
-        <div class="footer">
-            &copy; 2026 Asya Menü - Kemer Smart Guide
-        </div>
-    </div>
+  <!-- ÇORBALAR -->
+  <div class="category-section" id="corbalar">
+    <div class="category-title"><span class="icon">🍲</span> Çorba Çeşitlerimiz</div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Mercimek Çorbası</div><div class="item-name-sub">Lentil Soup</div></div><div class="item-price">₺150</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Tavuk Çorbası</div><div class="item-name-sub">Chicken Soup</div></div><div class="item-price">₺150</div></div>
+  </div>
 
-    <a href="tel:+905370182131" class="order-button">
-        📞 HEMEN SİPARİŞ VER
-    </a>
+  <!-- MAKARNALAR -->
+  <div class="category-section" id="makarnalar">
+    <div class="category-title"><span class="icon">🍝</span> Makarna Çeşitlerimiz</div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Penne Bolanez</div><div class="item-name-sub">Penne Bolognese</div></div><div class="item-price">₺300</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Penne Arabiata</div><div class="item-name-sub">Penne Arabiatta</div></div><div class="item-price">₺300</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kre. Tavuklu Mantarlı Penne</div><div class="item-name-sub">Creamy Chicken Penne with Mushrooms</div></div><div class="item-price">₺350</div></div>
+  </div>
+
+  <!-- PİZZA -->
+  <div class="category-section" id="pizza">
+    <div class="category-title"><span class="icon">🍕</span> Pizza Çeşitleri</div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Karışık Pizza</div><div class="item-name-sub">Mixed Pizza</div></div><div class="item-price">₺350</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Tavuklu Pizza</div><div class="item-name-sub">Chicken Pizza</div></div><div class="item-price">₺380</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Tonbalıklı Pizza</div><div class="item-name-sub">Tuna Pizza</div></div><div class="item-price">₺400</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Sucuklu Pizza</div><div class="item-name-sub">Pizza with Sausage</div></div><div class="item-price">₺320</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Margarita Pizza</div><div class="item-name-sub">Margarita Pizza</div></div><div class="item-price">₺300</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kavurmalı Pizza</div><div class="item-name-sub">Roasted Pizza</div></div><div class="item-price">₺430</div></div>
+  </div>
+
+  <!-- DÜRÜMLER -->
+  <div class="category-section" id="durumler">
+    <div class="category-title"><span class="icon">🌯</span> Dürüm Çeşitlerimiz</div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Adana Dürüm</div><div class="item-name-sub">Spicy Meat Roll</div></div><div class="item-price">₺200</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kuzu Şiş Dürüm</div><div class="item-name-sub">Lamb Shish Wrap</div></div><div class="item-price">₺270</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kuzu Ciğer Şiş Dürüm</div><div class="item-name-sub">Lamb Liver Shish Wrap</div></div><div class="item-price">₺270</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Urfa Dürüm</div><div class="item-name-sub">Spicy Meat Wrap</div></div><div class="item-price">₺220</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Köfte Dürüm</div><div class="item-name-sub">Meatball Wrap</div></div><div class="item-price">₺200</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Tavuk But Şiş Dürüm</div><div class="item-name-sub">Chicken Shish Wrap</div></div><div class="item-price">₺180</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Tavuklu Fajita Dürüm</div><div class="item-name-sub">Chicken Fajita Wrap</div></div><div class="item-price">₺200</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Etli Fajita Dürüm</div><div class="item-name-sub">Meat Fajita Wrap</div></div><div class="item-price">₺280</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Tavuk Dürüm</div><div class="item-name-sub">Chicken Wrap</div></div><div class="item-price">₺160</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Ekmek Arası Tavuk</div><div class="item-name-sub">Chicken in Bread</div></div><div class="item-price">₺180</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Ekmek Arası Köfte</div><div class="item-name-sub">Meatballs in Bread</div></div><div class="item-price">₺230</div></div>
+  </div>
+
+  <!-- SALATALAR & MEZELER -->
+  <div class="category-section" id="salatalar">
+    <div class="category-title"><span class="icon">🥗</span> Salatalar & Mezeler</div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Mevsim Salata</div><div class="item-name-sub">Season Salad</div></div><div class="item-price">₺200</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Çoban Salatası</div><div class="item-name-sub">Shepherd Salad</div></div><div class="item-price">₺200</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Izgara Tavuk Salatası</div><div class="item-name-sub">Grilled Chicken Salad</div></div><div class="item-price">₺320</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Tonbalık Salata</div><div class="item-name-sub">Tuna Salad</div></div><div class="item-price">₺350</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kırmızı Lahana Salatası</div><div class="item-name-sub">Red Cabbage Salad</div></div><div class="item-price">₺100</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Antep Ezme</div><div class="item-name-sub">Mash Salad</div></div><div class="item-price">₺130</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Haydari</div><div class="item-name-sub">Strained Yoghurt with Mint</div></div><div class="item-price">₺130</div></div>
+  </div>
+
+  <!-- TAVUK YEMEKLERİ -->
+  <div class="category-section" id="tavuk">
+    <div class="category-title"><span class="icon">🍗</span> Tavuk Yemek Çeşitlerimiz</div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Tavuk But Şiş Servis</div><div class="item-name-sub">Chicken Skewer Service</div></div><div class="item-price">₺330</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Tavuk Izgara</div><div class="item-name-sub">Chicken Grill</div></div><div class="item-price">₺330</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Yaprak Kanat Izgara</div><div class="item-name-sub">Grilled Chicken Wings</div></div><div class="item-price">₺450</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Pilav Üstü Tavuk</div><div class="item-name-sub">Chicken Over Rice</div></div><div class="item-price">₺300</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Barbekü Soslu Tavuk</div><div class="item-name-sub">Chicken with Barbecue Sauce</div></div><div class="item-price">₺380</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Mantar Soslu Tavuk</div><div class="item-name-sub">Chicken with Mushroom Sauce</div></div><div class="item-price">₺380</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Köri Soslu Tavuk</div><div class="item-name-sub">Chicken with Curry Sauce</div></div><div class="item-price">₺400</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Fırında Tavuk Güveci</div><div class="item-name-sub">Chicken Stew in the Oven</div></div><div class="item-price">₺500</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Tavuk Kavurma</div><div class="item-name-sub">Chicken Roast</div></div><div class="item-price">₺320</div></div>
+  </div>
+
+  <!-- KIZARTMALAR -->
+  <div class="category-section" id="kizartmalar">
+    <div class="category-title"><span class="icon">🍟</span> Kızartmalar</div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Patates Kızartması</div><div class="item-name-sub">Fried Potato</div></div><div class="item-price">₺150</div></div>
+  </div>
+
+  <!-- ET YEMEKLERİ -->
+  <div class="category-section" id="et">
+    <div class="category-title"><span class="icon">🥩</span> Et Yemek Çeşitlerimiz</div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Adana Servis</div><div class="item-name-sub">Spicy Kebab</div></div><div class="item-price">₺370</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Köfte Servis</div><div class="item-name-sub">Meatball Service</div></div><div class="item-price">₺370</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kuzu Şiş Servis</div><div class="item-name-sub">Lamb Shish</div></div><div class="item-price">₺800</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Urfa Servis</div><div class="item-name-sub">Urfa Kebap</div></div><div class="item-price">₺400</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kuzu Ciğer Şiş Servis</div><div class="item-name-sub">Lamb Liver Shish Service</div></div><div class="item-price">₺800</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Karışık Et Izgara</div><div class="item-name-sub">Mixed Grill</div></div><div class="item-price">₺3.500</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kıymalı Arap Tava</div><div class="item-name-sub">Arabic Pan with Minced Meat</div></div><div class="item-price">₺380</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kuzu Kavurma</div><div class="item-name-sub">Lamb Roast</div></div><div class="item-price">₺900</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Mantar Soslu Biftek</div><div class="item-name-sub">Steak with Mushroom Sauce</div></div><div class="item-price">₺1.100</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kuzu Pirzola</div><div class="item-name-sub">Lamb Chops</div></div><div class="item-price">₺1.100</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Fırında Etli Kuzu Güveç</div><div class="item-name-sub">Lamb Stew with Meat</div></div><div class="item-price">₺1.000</div></div>
+  </div>
+
+  <!-- VEJETARYEN -->
+  <div class="category-section" id="vejetaryen">
+    <div class="category-title"><span class="icon">🥦</span> Vejetaryen Yemek Çeşitlerimiz</div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Mercimek Çorbası</div><div class="item-name-sub">Lentil Soup</div></div><div class="item-price">₺150</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Sebzeli Omlet</div><div class="item-name-sub">Omelet with Vegetables</div></div><div class="item-price">₺220</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Sebzeli Peynirli Tost</div><div class="item-name-sub">Vegetable and Cheese Toast</div></div><div class="item-price">₺180</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Sebze Sote</div><div class="item-name-sub">Saute Vegetables</div></div><div class="item-price">₺330</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Sebze Dürüm</div><div class="item-name-sub">Vegetable Wrap</div></div><div class="item-price">₺180</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Sebzeli Pizza</div><div class="item-name-sub">Vegetable Pizza</div></div><div class="item-price">₺350</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Sebzeli Makarna</div><div class="item-name-sub">Vegetable Pasta</div></div><div class="item-price">₺300</div></div>
+  </div>
+
+  <!-- TATLILAR -->
+  <div class="category-section" id="tatlilar">
+    <div class="category-title"><span class="icon">🍮</span> Tatlı Çeşitlerimiz</div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Künefe</div><div class="item-name-sub">Künefe</div></div><div class="item-price">₺200</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Frambuazlı Cheesecake</div><div class="item-name-sub">Raspberry Cheesecake</div></div><div class="item-price">₺250</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Medavik</div><div class="item-name-sub">Medovik</div></div><div class="item-price">₺250</div></div>
+  </div>
+
+  <!-- SOĞUK İÇECEKLER -->
+  <div class="category-section" id="soguk">
+    <div class="category-title"><span class="icon">🧊</span> Soğuk İçecekler</div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Pepsi Kutu</div><div class="item-name-sub">Pepsi Can</div></div><div class="item-price">₺75</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Şişe Pepsi</div><div class="item-name-sub">Pepsi Bottle</div></div><div class="item-price">₺75</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Fanta Kutu</div><div class="item-name-sub">Fanta Can</div></div><div class="item-price">₺75</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Ice Tea Şeftali</div><div class="item-name-sub">Peach Ice Tea</div></div><div class="item-price">₺75</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Ice Tea Limon</div><div class="item-name-sub">Lemon Ice Tea</div></div><div class="item-price">₺75</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Ice Tea Karpuz</div><div class="item-name-sub">Watermelon Ice Tea</div></div><div class="item-price">₺75</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Ice Tea Mango Ananas</div><div class="item-name-sub">Mango Pineapple Ice Tea</div></div><div class="item-price">₺75</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Gazoz</div><div class="item-name-sub">Lemonade</div></div><div class="item-price">₺60</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kola Zero</div><div class="item-name-sub">Cola Zero</div></div><div class="item-price">₺75</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Ayran Büyük</div><div class="item-name-sub">Ayran (Large)</div></div><div class="item-price">₺45</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Şalgam</div><div class="item-name-sub">Turnip Juice</div></div><div class="item-price">₺60</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Meyveli Soda Çeşitleri</div><div class="item-name-sub">Fruit Soda Varieties</div></div><div class="item-price">₺40</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Sade Soda</div><div class="item-name-sub">Mineral Water</div></div><div class="item-price">₺35</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Küçük Su</div><div class="item-name-sub">Small Water</div></div><div class="item-price">₺25</div></div>
+  </div>
+
+  <!-- SICAK İÇECEKLER -->
+  <div class="category-section" id="sicak">
+    <div class="category-title"><span class="icon">☕</span> Sıcak İçecekler</div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Demleme Çay</div><div class="item-name-sub">Brewed Black Tea</div></div><div class="item-price">₺20</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Nescafe Sade</div><div class="item-name-sub">Plain Nescafe</div></div><div class="item-price">₺60</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Nescafe 3'ü Birarada</div><div class="item-name-sub">Nescafe 3 in 1</div></div><div class="item-price">₺60</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Cappuccino Şekerli</div><div class="item-name-sub">Cappuccino with Sugar</div></div><div class="item-price">₺80</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Ihlamur</div><div class="item-name-sub">Linden Tea</div></div><div class="item-price">₺60</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Yeşil Çay</div><div class="item-name-sub">Green Tea</div></div><div class="item-price">₺60</div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Türk Kahvesi</div><div class="item-name-sub">Turkish Coffee</div></div><div class="item-price">₺80</div></div>
+  </div>
+
+</div>
+
+<!-- FIXED CALL BUTTON -->
+<div class="call-btn">
+  <a href="tel:+905370182131">📞 SİPARİŞ VER</a>
+</div>
+
+<script>
+const navBtns=document.querySelectorAll('.nav-btn');
+const header=document.querySelector('.header');
+
+navBtns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const targetId=btn.getAttribute('data-target');
+    const target=document.getElementById(targetId);
+    if(!target)return;
+    navBtns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const headerH=header.offsetHeight;
+    const top=target.getBoundingClientRect().top+window.pageYOffset-headerH-12;
+    window.scrollTo({top,behavior:'smooth'});
+    btn.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+  });
+});
+
+const sections=document.querySelectorAll('.category-section');
+const observerOpts={
+  root:null,
+  rootMargin:`-${header.offsetHeight+20}px 0px -60% 0px`,
+  threshold:0
+};
+
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const id=entry.target.id;
+      navBtns.forEach(b=>{
+        b.classList.toggle('active',b.getAttribute('data-target')===id);
+        if(b.getAttribute('data-target')===id){
+          b.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+        }
+      });
+    }
+  });
+},observerOpts);
+
+sections.forEach(s=>observer.observe(s));
+
+document.querySelectorAll('.menu-item').forEach((item,i)=>{
+  item.style.animationDelay=`${(i%8)*0.05}s`;
+});
+</script>
 
 </body>
 </html>
