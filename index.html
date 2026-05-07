@@ -2,358 +2,773 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Asya 01 Ocakbaşı - Menü</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asya 01 Ocakbaşı — Menü</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap');
-
-*{margin:0;padding:0;box-sizing:border-box}
-
-:root{
-  --bg:#0d0d0d;--card:#1a1a1a;--card-hover:#222;
-  --gold:#d4a853;--gold-light:#e8c97a;
-  --red:#c0392b;--red-light:#e74c3c;
-  --green:#25d366;--green-light:#2ecc71; /* Sipariş butonu için yeşil eklendi */
-  --text:#f0e6d3;--text-dim:#8a8278;--border:#2a2520;
-}
-
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+body{background:#0d0d0d;color:#f0e6d3;font-family:'Poppins',sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;padding-bottom:40px}
+::-webkit-scrollbar{width:0;height:0}
+button{cursor:pointer;background:none;border:none;font-family:inherit}
 
-body{
-  font-family:'Poppins',sans-serif;
-  background:var(--bg);color:var(--text);
-  min-height:100vh;padding-bottom:80px;
-  -webkit-font-smoothing:antialiased;
-}
+/* Header */
+#header{position:sticky;top:0;z-index:20;border-bottom:1px solid #2a2520;background:linear-gradient(180deg,#0d0d0d 0%,rgba(13,13,13,0.97) 100%);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+#header-top{display:flex;align-items:flex-end;justify-content:space-between;padding:16px 16px 12px}
+#restaurant-name{font-family:'Playfair Display',serif;font-size:1.35rem;color:#d4a853;letter-spacing:2px;text-transform:uppercase;line-height:1.2;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#lang-picker{display:flex;gap:4px;border-radius:9999px;border:1px solid #2a2520;background:#1a1a1a;padding:2px;flex-shrink:0;margin-left:12px}
+.lang-btn{display:flex;align-items:center;gap:4px;border-radius:9999px;padding:4px 8px;font-size:11px;font-weight:700;transition:all .15s;color:#8a8278}
+.lang-btn.active{background:#d4a853;color:#0d0d0d}
+.lang-label{display:none}
+@media(min-width:400px){.lang-label{display:inline}}
 
-.header{
-  position:sticky;top:0;z-index:100;
-  background:linear-gradient(180deg,#0d0d0d 0%,rgba(13,13,13,0.97) 100%);
-  backdrop-filter:blur(12px);
-  padding:16px 0 0 0;
-  border-bottom:1px solid var(--border);
-}
+/* Category nav */
+#cat-nav{display:flex;gap:6px;overflow-x:auto;padding:0 12px 12px;scrollbar-width:none}
+#cat-nav::-webkit-scrollbar{display:none}
+.cat-pill{flex-shrink:0;border-radius:9999px;border:1px solid #2a2520;padding:6px 16px;font-size:11px;font-weight:500;white-space:nowrap;transition:all .2s;color:#8a8278;background:transparent}
+.cat-pill.active{background:linear-gradient(135deg,#d4a853,#e8c97a);color:#0d0d0d;border-color:#d4a853;font-weight:600;box-shadow:0 2px 12px rgba(212,168,83,0.25)}
 
-.logo-area{text-align:center;padding:0 16px 12px}
+/* Main content */
+#content{max-width:600px;margin:0 auto;padding:16px 16px 0}
+.cat-section{margin-bottom:32px}
+.cat-title{font-family:'Playfair Display',serif;font-size:1.15rem;color:#d4a853;padding-bottom:10px;margin-bottom:12px;border-bottom:1px solid #2a2520;display:flex;align-items:center;gap:8px}
+.items-list{display:flex;flex-direction:column;gap:6px}
 
-.logo-area h1{
-  font-family:'Playfair Display',serif;
-  font-size:1.5rem;color:var(--gold);
-  letter-spacing:2px;text-transform:uppercase;
-}
-
-.logo-area .subtitle{
-  font-size:0.65rem;color:var(--text-dim);
-  letter-spacing:5px;text-transform:uppercase;margin-top:2px;
-}
-
-.nav-scroll{
-  overflow-x:auto;-webkit-overflow-scrolling:touch;
-  scrollbar-width:none;padding:0 12px 12px;
-  display:flex;gap:6px;
-}
-.nav-scroll::-webkit-scrollbar{display:none}
-
-.nav-btn{
-  flex-shrink:0;padding:8px 16px;
-  border:1px solid var(--border);border-radius:24px;
-  background:transparent;color:var(--text-dim);
-  font-family:'Poppins',sans-serif;font-size:0.75rem;
-  font-weight:500;cursor:pointer;transition:all 0.3s ease;
-  white-space:nowrap;letter-spacing:0.5px;
-}
-
-.nav-btn.active,.nav-btn:hover{
-  background:linear-gradient(135deg,var(--gold),var(--gold-light));
-  color:#0d0d0d;border-color:var(--gold);font-weight:600;
-  box-shadow:0 2px 12px rgba(212,168,83,0.25);
-}
-
-.menu-container{max-width:600px;margin:0 auto;padding:16px}
-
-.category-section{margin-bottom:32px}
-
-.category-title{
-  font-family:'Playfair Display',serif;font-size:1.2rem;
-  color:var(--gold);padding-bottom:10px;margin-bottom:14px;
-  border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:10px;
-}
-
-.category-title .icon{font-size:1.1rem}
-
-.menu-item{
-  display:flex;justify-content:space-between;align-items:flex-start;
-  padding:12px 14px;margin-bottom:6px;
-  background:var(--card);border-radius:10px;
-  border:1px solid transparent;transition:all 0.25s ease;
-}
-
-.menu-item:hover{border-color:var(--border);background:var(--card-hover)}
-
-.item-info{flex:1;padding-right:12px}
-
-.item-name-tr{font-size:0.85rem;font-weight:500;color:var(--text);line-height:1.3}
-
-.item-name-sub{font-size:0.65rem;color:var(--text-dim);margin-top:2px;line-height:1.3}
-
-.item-price{
-  font-family:'Playfair Display',serif;font-size:0.95rem;
-  color:var(--red-light); /* Fiyat rengi KIRMIZI yapıldı */
-  font-weight:700;white-space:nowrap;padding-top:2px;
-}
-
-.call-btn{
-  position:fixed;bottom:0;left:0;right:0;z-index:200;
-  padding:12px 16px;
-  padding-bottom:max(12px,env(safe-area-inset-bottom));
-  background:linear-gradient(180deg,transparent,rgba(13,13,13,0.9) 20%,#0d0d0d 40%);
-}
-
-.call-btn a{
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  width:100%;max-width:600px;margin:0 auto;padding:14px;
-  background:linear-gradient(135deg,var(--green),var(--green-light)); /* Buton YEŞİL yapıldı */
-  color:#fff;text-decoration:none;border-radius:14px;
-  font-family:'Poppins',sans-serif;font-size:0.95rem;
-  font-weight:600;letter-spacing:1.5px;
-  box-shadow:0 4px 20px rgba(37,211,102,0.4);
-  transition:transform 0.2s,box-shadow 0.2s;
-}
-
-.call-btn a:active{transform:scale(0.97);box-shadow:0 2px 10px rgba(37,211,102,0.3)}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.menu-item{animation:fadeUp 0.4s ease both}
-
-@media(min-width:768px){
-  .logo-area h1{font-size:2rem}
-  .menu-item{padding:14px 18px}
-}
+/* Item card */
+.item-card{display:flex;align-items:flex-start;justify-content:space-between;background:#1a1a1a;border-radius:12px;padding:12px 14px;border:1px solid transparent;animation:fadeUp .4s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.item-info{flex:1;min-width:0;padding-right:8px}
+.item-name{font-size:13.5px;font-weight:500;color:#f0e6d3;line-height:1.35}
+.item-desc{margin-top:2px;font-size:11.5px;color:#8a8278;line-height:1.4}
+.item-price{margin-top:6px;font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:#d4a853}
 </style>
 </head>
 <body>
 
-<div class="header">
-  <div class="logo-area">
-    <h1>🔥 Asya 01 Ocakbaşı</h1>
-    <p class="subtitle">Kemer • Est. 2026</p>
+<div id="header">
+  <div id="header-top">
+    <div id="restaurant-name">ASYA 01 OCAKBAŞI</div>
+    <div id="lang-picker"></div>
   </div>
-  <div class="nav-scroll" id="navScroll">
-    <button class="nav-btn active" data-target="et">🥩 Et Yemekleri</button>
-    <button class="nav-btn" data-target="tavuk">🍗 Tavuk Yemekleri</button>
-    <button class="nav-btn" data-target="durumler">🌯 Dürümler</button>
-    <button class="nav-btn" data-target="kahvalti">☀️ Kahvaltı</button>
-    <button class="nav-btn" data-target="corbalar">🍲 Çorbalar</button>
-    <button class="nav-btn" data-target="makarnalar">🍝 Makarnalar</button>
-    <button class="nav-btn" data-target="pizza">🍕 Pizza</button>
-    <button class="nav-btn" data-target="salatalar">🥗 Salatalar & Mezeler</button>
-    <button class="nav-btn" data-target="kizartmalar">🍟 Kızartmalar</button>
-    <button class="nav-btn" data-target="vejetaryen">🥦 Vejetaryen</button>
-    <button class="nav-btn" data-target="tatlilar">🍮 Tatlılar</button>
-    <button class="nav-btn" data-target="soguk">🧊 Soğuk İçecekler</button>
-    <button class="nav-btn" data-target="sicak">☕ Sıcak İçecekler</button>
-  </div>
+  <nav id="cat-nav"></nav>
 </div>
 
-<div class="menu-container">
-
-  <div class="category-section" id="et">
-    <div class="category-title"><span class="icon">🥩</span> Et Yemek Çeşitlerimiz</div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Adana Servis</div><div class="item-name-sub">Spicy Kebab</div></div><div class="item-price">370 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Köfte Servis</div><div class="item-name-sub">Meatball Service</div></div><div class="item-price">370 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kuzu Şiş Servis</div><div class="item-name-sub">Lamb Shish</div></div><div class="item-price">800 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Urfa Servis</div><div class="item-name-sub">Urfa Kebap</div></div><div class="item-price">400 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kuzu Ciğer Şiş Servis</div><div class="item-name-sub">Lamb Liver Shish Service</div></div><div class="item-price">800 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Karışık Et Izgara</div><div class="item-name-sub">Mixed Grill</div></div><div class="item-price">3.500 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kıymalı Arap Tava</div><div class="item-name-sub">Arabic Pan with Minced Meat</div></div><div class="item-price">380 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kuzu Kavurma</div><div class="item-name-sub">Lamb Roast</div></div><div class="item-price">900 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Mantar Soslu Biftek</div><div class="item-name-sub">Steak with Mushroom Sauce</div></div><div class="item-price">1.100 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kuzu Pirzola</div><div class="item-name-sub">Lamb Chops</div></div><div class="item-price">1.100 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Fırında Etli Kuzu Güveç</div><div class="item-name-sub">Lamb Stew with Meat</div></div><div class="item-price">1.000 ₺</div></div>
-  </div>
-
-  <div class="category-section" id="tavuk">
-    <div class="category-title"><span class="icon">🍗</span> Tavuk Yemek Çeşitlerimiz</div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Tavuk But Şiş Servis</div><div class="item-name-sub">Chicken Skewer Service</div></div><div class="item-price">330 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Tavuk Izgara</div><div class="item-name-sub">Chicken Grill</div></div><div class="item-price">330 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Yaprak Kanat Izgara</div><div class="item-name-sub">Grilled Chicken Wings</div></div><div class="item-price">450 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Pilav Üstü Tavuk</div><div class="item-name-sub">Chicken Over Rice</div></div><div class="item-price">300 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Barbekü Soslu Tavuk</div><div class="item-name-sub">Chicken with Barbecue Sauce</div></div><div class="item-price">380 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Mantar Soslu Tavuk</div><div class="item-name-sub">Chicken with Mushroom Sauce</div></div><div class="item-price">380 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Köri Soslu Tavuk</div><div class="item-name-sub">Chicken with Curry Sauce</div></div><div class="item-price">400 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Fırında Tavuk Güveci</div><div class="item-name-sub">Chicken Stew in the Oven</div></div><div class="item-price">500 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Tavuk Kavurma</div><div class="item-name-sub">Chicken Roast</div></div><div class="item-price">320 ₺</div></div>
-  </div>
-
-  <div class="category-section" id="durumler">
-    <div class="category-title"><span class="icon">🌯</span> Dürüm Çeşitlerimiz</div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Adana Dürüm</div><div class="item-name-sub">Spicy Meat Roll</div></div><div class="item-price">200 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kuzu Şiş Dürüm</div><div class="item-name-sub">Lamb Shish Wrap</div></div><div class="item-price">270 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kuzu Ciğer Şiş Dürüm</div><div class="item-name-sub">Lamb Liver Shish Wrap</div></div><div class="item-price">270 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Urfa Dürüm</div><div class="item-name-sub">Spicy Meat Wrap</div></div><div class="item-price">220 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Köfte Dürüm</div><div class="item-name-sub">Meatball Wrap</div></div><div class="item-price">200 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Tavuk But Şiş Dürüm</div><div class="item-name-sub">Chicken Shish Wrap</div></div><div class="item-price">180 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Tavuklu Fajita Dürüm</div><div class="item-name-sub">Chicken Fajita Wrap</div></div><div class="item-price">200 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Etli Fajita Dürüm</div><div class="item-name-sub">Meat Fajita Wrap</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Tavuk Dürüm</div><div class="item-name-sub">Chicken Wrap</div></div><div class="item-price">160 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Ekmek Arası Tavuk</div><div class="item-name-sub">Chicken in Bread</div></div><div class="item-price">180 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Ekmek Arası Köfte</div><div class="item-name-sub">Meatballs in Bread</div></div><div class="item-price">230 ₺</div></div>
-  </div>
-
-  <div class="category-section" id="kahvalti">
-    <div class="category-title"><span class="icon">☀️</span> Kahvaltı Çeşitlerimiz</div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kahvaltı Tabağı</div><div class="item-name-sub">Breakfast Plate</div></div><div class="item-price">300 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Peynirli Omlet</div><div class="item-name-sub">Cheese Omlet</div></div><div class="item-price">190 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Karışık Omlet</div><div class="item-name-sub">Mixed Omelette</div></div><div class="item-price">230 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Sucuklu Yumurta</div><div class="item-name-sub">Egg with Sausage</div></div><div class="item-price">250 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Ekmek Arası Sucuk</div><div class="item-name-sub">Sausage Between Bread</div></div><div class="item-price">250 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Menemen</div><div class="item-name-sub">Menemen</div></div><div class="item-price">200 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Menemen Sucuklu</div><div class="item-name-sub">Menemen with Sausage</div></div><div class="item-price">230 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Sahanda Yumurta</div><div class="item-name-sub">Fried Eggs</div></div><div class="item-price">180 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kaşar Peynirli Tost</div><div class="item-name-sub">Cheese Toast</div></div><div class="item-price">130 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Karışık Tost</div><div class="item-name-sub">Mixed Toast</div></div><div class="item-price">130 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Yum. Sucuklu Kaşar Peynirli Tost</div><div class="item-name-sub">Cheese Toast with Egg and Sausage</div></div><div class="item-price">180 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kıymalı Yumurta</div><div class="item-name-sub">Egg with Minced Meat</div></div><div class="item-price">300 ₺</div></div>
-  </div>
-
-  <div class="category-section" id="corbalar">
-    <div class="category-title"><span class="icon">🍲</span> Çorba Çeşitlerimiz</div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Mercimek Çorbası</div><div class="item-name-sub">Lentil Soup</div></div><div class="item-price">150 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Tavuk Çorbası</div><div class="item-name-sub">Chicken Soup</div></div><div class="item-price">160 ₺</div></div>
-  </div>
-
-  <div class="category-section" id="makarnalar">
-    <div class="category-title"><span class="icon">🍝</span> Makarna Çeşitlerimiz</div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Penne Bolanez</div><div class="item-name-sub">Penne Bolognese</div></div><div class="item-price">300 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Penne Arabiata</div><div class="item-name-sub">Penne Arabiatta</div></div><div class="item-price">280 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kre. Tavuklu Mantarlı Penne</div><div class="item-name-sub">Creamy Chicken Penne with Mushrooms</div></div><div class="item-price">320 ₺</div></div>
-  </div>
-
-  <div class="category-section" id="pizza">
-    <div class="category-title"><span class="icon">🍕</span> Pizza Çeşitleri</div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Karışık Pizza</div><div class="item-name-sub">Mixed Pizza</div></div><div class="item-price">350 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Tavuklu Pizza</div><div class="item-name-sub">Chicken Pizza</div></div><div class="item-price">380 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Tonbalıklı Pizza</div><div class="item-name-sub">Tuna Pizza</div></div><div class="item-price">400 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Sucuklu Pizza</div><div class="item-name-sub">Pizza with Sausage</div></div><div class="item-price">320 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Margarita Pizza</div><div class="item-name-sub">Margarita Pizza</div></div><div class="item-price">300 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kavurmalı Pizza</div><div class="item-name-sub">Roasted Pizza</div></div><div class="item-price">430 ₺</div></div>
-  </div>
-
-  <div class="category-section" id="salatalar">
-    <div class="category-title"><span class="icon">🥗</span> Salatalar & Mezeler</div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Mevsim Salata</div><div class="item-name-sub">Season Salad</div></div><div class="item-price">200 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Çoban Salatası</div><div class="item-name-sub">Shepherd Salad</div></div><div class="item-price">200 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Izgara Tavuk Salatası</div><div class="item-name-sub">Grilled Chicken Salad</div></div><div class="item-price">320 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Tonbalık Salata</div><div class="item-name-sub">Tuna Salad</div></div><div class="item-price">350 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kırmızı Lahana Salatası</div><div class="item-name-sub">Red Cabbage Salad</div></div><div class="item-price">100 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Antep Ezme</div><div class="item-name-sub">Mash Salad</div></div><div class="item-price">130 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Haydari</div><div class="item-name-sub">Strained Yoghurt with Mint</div></div><div class="item-price">130 ₺</div></div>
-  </div>
-
-  <div class="category-section" id="kizartmalar">
-    <div class="category-title"><span class="icon">🍟</span> Kızartmalar</div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Patates Kızartması</div><div class="item-name-sub">Fried Potato</div></div><div class="item-price">150 ₺</div></div>
-  </div>
-
-  <div class="category-section" id="vejetaryen">
-    <div class="category-title"><span class="icon">🥦</span> Vejetaryen Yemek Çeşitlerimiz</div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Mercimek Çorbası</div><div class="item-name-sub">Lentil Soup</div></div><div class="item-price">150 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Sebzeli Omlet</div><div class="item-name-sub">Omelet with Vegetables</div></div><div class="item-price">220 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Sebzeli Peynirli Tost</div><div class="item-name-sub">Vegetable and Cheese Toast</div></div><div class="item-price">180 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Sebze Sote</div><div class="item-name-sub">Saute Vegetables</div></div><div class="item-price">330 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Sebze Dürüm</div><div class="item-name-sub">Vegetable Wrap</div></div><div class="item-price">180 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Sebzeli Pizza</div><div class="item-name-sub">Vegetable Pizza</div></div><div class="item-price">350 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Sebzeli Makarna</div><div class="item-name-sub">Vegetable Pasta</div></div><div class="item-price">300 ₺</div></div>
-  </div>
-
-  <div class="category-section" id="tatlilar">
-    <div class="category-title"><span class="icon">🍮</span> Tatlı Çeşitlerimiz</div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Künefe</div><div class="item-name-sub">Künefe</div></div><div class="item-price">200 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Frambuazlı Cheesecake</div><div class="item-name-sub">Raspberry Cheesecake</div></div><div class="item-price">250 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Medavik</div><div class="item-name-sub">Medovik</div></div><div class="item-price">250 ₺</div></div>
-  </div>
-
-  <div class="category-section" id="soguk">
-    <div class="category-title"><span class="icon">🧊</span> Soğuk İçecekler</div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Pepsi Kutu</div><div class="item-name-sub">Pepsi Can</div></div><div class="item-price">75 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Şişe Pepsi</div><div class="item-name-sub">Pepsi Bottle</div></div><div class="item-price">75 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Ice Tea Şeftali</div><div class="item-name-sub">Peach Ice Tea</div></div><div class="item-price">75 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Ice Tea Limon</div><div class="item-name-sub">Lemon Ice Tea</div></div><div class="item-price">75 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Ice Tea Karpuz</div><div class="item-name-sub">Watermelon Ice Tea</div></div><div class="item-price">75 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Ice Tea Mango Ananas</div><div class="item-name-sub">Mango Pineapple Ice Tea</div></div><div class="item-price">75 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Gazoz</div><div class="item-name-sub">Lemonade</div></div><div class="item-price">60 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Kola Zero</div><div class="item-name-sub">Cola Zero</div></div><div class="item-price">75 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Ayran Büyük</div><div class="item-name-sub">Ayran (Large)</div></div><div class="item-price">45 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Şalgam</div><div class="item-name-sub">Turnip Juice</div></div><div class="item-price">60 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Meyveli Soda Çeşitleri</div><div class="item-name-sub">Fruit Soda Varieties</div></div><div class="item-price">40 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Sade Soda</div><div class="item-name-sub">Mineral Water</div></div><div class="item-price">35 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Küçük Su</div><div class="item-name-sub">Small Water</div></div><div class="item-price">25 ₺</div></div>
-  </div>
-
-  <div class="category-section" id="sicak">
-    <div class="category-title"><span class="icon">☕</span> Sıcak İçecekler</div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Demleme Çay</div><div class="item-name-sub">Brewed Black Tea</div></div><div class="item-price">20 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Nescafe Sade</div><div class="item-name-sub">Plain Nescafe</div></div><div class="item-price">60 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Nescafe 3'ü Birarada</div><div class="item-name-sub">Nescafe 3 in 1</div></div><div class="item-price">60 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Cappuccino Şekerli</div><div class="item-name-sub">Cappuccino with Sugar</div></div><div class="item-price">80 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Ihlamur</div><div class="item-name-sub">Linden Tea</div></div><div class="item-price">60 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Yeşil Çay</div><div class="item-name-sub">Green Tea</div></div><div class="item-price">60 ₺</div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name-tr">Türk Kahvesi</div><div class="item-name-sub">Turkish Coffee</div></div><div class="item-price">80 ₺</div></div>
-  </div>
-
-</div>
-
-<div class="call-btn">
-  <a href="tel:+905370182131">📞 SİPARİŞ VER</a>
-</div>
+<main id="content"></main>
 
 <script>
-const navBtns=document.querySelectorAll('.nav-btn');
-const header=document.querySelector('.header');
-
-navBtns.forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const targetId=btn.getAttribute('data-target');
-    const target=document.getElementById(targetId);
-    if(!target)return;
-    navBtns.forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const headerH=header.offsetHeight;
-    const top=target.getBoundingClientRect().top+window.pageYOffset-headerH-12;
-    window.scrollTo({top,behavior:'smooth'});
-    btn.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
-  });
-});
-
-const sections=document.querySelectorAll('.category-section');
-const observerOpts={
-  root:null,
-  rootMargin:`-${header.offsetHeight+20}px 0px -60% 0px`,
-  threshold:0
+const LANGUAGES = ["tr","en","ru","de"];
+const LANG_META = {
+  tr:{label:"TR",flag:"🇹🇷"},
+  en:{label:"EN",flag:"🇬🇧"},
+  ru:{label:"RU",flag:"🇷🇺"},
+  de:{label:"DE",flag:"🇩🇪"}
 };
 
-const observer=new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      const id=entry.target.id;
-      navBtns.forEach(b=>{
-        b.classList.toggle('active',b.getAttribute('data-target')===id);
-        if(b.getAttribute('data-target')===id){
-          b.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
-        }
-      });
+const CATEGORIES = [
+  {id:"c1",  names:{tr:"🥩 Et Yemekleri",       en:"🥩 Meat Dishes",        ru:"🥩 Мясные блюда",         de:"🥩 Fleischgerichte"}},
+  {id:"c2",  names:{tr:"🍗 Tavuk Yemekleri",     en:"🍗 Chicken Dishes",     ru:"🍗 Блюда из курицы",      de:"🍗 Hähnchengerichte"}},
+  {id:"c3",  names:{tr:"🌯 Dürümler",            en:"🌯 Wraps",              ru:"🌯 Шаурма и роллы",       de:"🌯 Wraps"}},
+  {id:"c4",  names:{tr:"☀️ Kahvaltı",            en:"☀️ Breakfast",          ru:"☀️ Завтрак",              de:"☀️ Frühstück"}},
+  {id:"c5",  names:{tr:"🍲 Çorbalar",            en:"🍲 Soups",              ru:"🍲 Супы",                 de:"🍲 Suppen"}},
+  {id:"c6",  names:{tr:"🍝 Makarnalar",          en:"🍝 Pasta",              ru:"🍝 Паста",                de:"🍝 Pasta"}},
+  {id:"c7",  names:{tr:"🍕 Pizza",               en:"🍕 Pizza",              ru:"🍕 Пицца",                de:"🍕 Pizza"}},
+  {id:"c8",  names:{tr:"🥗 Salatalar & Mezeler", en:"🥗 Salads & Starters",  ru:"🥗 Салаты и закуски",     de:"🥗 Salate & Vorspeisen"}},
+  {id:"c9",  names:{tr:"🍟 Kızartmalar",         en:"🍟 Fried",              ru:"🍟 Фритюр",               de:"🍟 Frittiertes"}},
+  {id:"c10", names:{tr:"🥦 Vejetaryen",          en:"🥦 Vegetarian",         ru:"🥦 Вегетарианское",       de:"🥦 Vegetarisch"}},
+  {id:"c11", names:{tr:"🍮 Tatlılar",            en:"🍮 Desserts",           ru:"🍮 Десерты",              de:"🍮 Desserts"}},
+  {id:"c12", names:{tr:"🧊 Soğuk İçecekler",     en:"🧊 Cold Drinks",        ru:"🧊 Холодные напитки",     de:"🧊 Kaltgetränke"}},
+  {id:"c13", names:{tr:"☕ Sıcak İçecekler",     en:"☕ Hot Drinks",          ru:"☕ Горячие напитки",      de:"☕ Heißgetränke"}},
+];
+
+const ITEMS = [
+  // ── Et Yemekleri ──────────────────────────────────────────────────────────────
+  {cat:"c1",price:370,
+   names:{tr:"Adana Servis",en:"Adana Kebab Plate",ru:"Адана-кебаб",de:"Adana Kebab Teller"},
+   descs:{tr:"Acılı kıyma köftenin közde pişirilmiş haliyle pirinç pilavı, domates ve biberle sunulan klasik Adana kebabı",
+          en:"Spiced ground lamb on skewer, served with rice, salad and flatbread",
+          ru:"Рубленый шашлык из баранины со специями, подаётся с рисом, салатом и лепёшкой",
+          de:"Würziger Hackfleischspieß vom Lamm mit Reis, Salat und Fladenbrot"}},
+  {cat:"c1",price:370,
+   names:{tr:"Köfte Servis",en:"Grilled Meatball Plate",ru:"Тарелка с кёфте",de:"Köfte-Teller"},
+   descs:{tr:"Izgara taş fırın köftesi; pilav, domates ve yeşil biberiyle birlikte servis edilir",
+          en:"Juicy Turkish meatballs grilled over charcoal, served with rice and salad",
+          ru:"Сочные турецкие котлеты-гриль, подаются с рисом и салатом",
+          de:"Saftige türkische Hackfleischbällchen vom Grill mit Reis und Salat"}},
+  {cat:"c1",price:800,
+   names:{tr:"Kuzu Şiş Servis",en:"Lamb Skewer Plate",ru:"Шашлык из баранины",de:"Lammspieß-Teller"},
+   descs:{tr:"Marine edilmiş kuzu eti küplerinin şişte közde pişirilmesiyle hazırlanan lezzetli ızgara tabağı",
+          en:"Tender marinated lamb cubes grilled on skewer, served with rice and vegetables",
+          ru:"Нежные маринованные кусочки баранины на шампуре, подаются с рисом и овощами",
+          de:"Zartes mariniertes Lammfleisch am Spieß gegrillt, mit Reis und Gemüse"}},
+  {cat:"c1",price:400,
+   names:{tr:"Urfa Servis",en:"Urfa Kebab Plate",ru:"Урфа-кебаб",de:"Urfa Kebab Teller"},
+   descs:{tr:"Az baharatlı, bol soğanlı ve maydonozlu Urfa usulü kıyma kebabı; pilav ve salatayla servis edilir",
+          en:"Mildly spiced ground lamb kebab from Urfa region, with rice and salad",
+          ru:"Мягкий рубленый шашлык из баранины по-урфийски с рисом и салатом",
+          de:"Mild gewürzter Hackfleischspieß nach Urfa-Art mit Reis und Salat"}},
+  {cat:"c1",price:800,
+   names:{tr:"Kuzu Ciğer Şiş Servis",en:"Lamb Liver Skewer Plate",ru:"Шашлык из бараньей печени",de:"Lammsleber-Spieß-Teller"},
+   descs:{tr:"Taze kuzu ciğerinin şişte közlenerek hazırlandığı, yanında pilav ve kızarmış biberle sunulan klasik lezzet",
+          en:"Fresh lamb liver on skewer, grilled to perfection with herbs and spices",
+          ru:"Свежая баранья печень на шампуре, жареная с травами и специями",
+          de:"Frische Lammsleber am Spieß gegrillt mit Kräutern und Gewürzen"}},
+  {cat:"c1",price:3500,
+   names:{tr:"Karışık Et Izgara",en:"Mixed Grill Platter",ru:"Ассорти гриль",de:"Gemischter Grillplatter"},
+   descs:{tr:"Adana, kuzu şiş, köfte ve tavuktan oluşan zengin ızgara tabağı; iki kişilik büyük porsiyon",
+          en:"Selection of lamb shish, Adana kebab, köfte and chicken, served for two",
+          ru:"Подборка бараньего шашлыка, аданы, кёфте и курицы, для двоих",
+          de:"Auswahl aus Lammspieß, Adana-Kebab, Köfte und Hähnchen, für zwei"}},
+  {cat:"c1",price:380,
+   names:{tr:"Kıymalı Arap Tava",en:"Minced Lamb Arabic Pan",ru:"Арабская сковорода с фаршем",de:"Arabische Hackfleisch-Pfanne"},
+   descs:{tr:"Kıyma, domates, biber ve baharatların demir tavada birlikte kavurulmasıyla hazırlanan Arap usulü sıcak tava",
+          en:"Spiced minced lamb cooked in a sizzling pan with tomatoes and peppers",
+          ru:"Пряный фарш из баранины, тушённый с томатами и перцем по-арабски",
+          de:"Würziges Lammhackfleisch in der Pfanne mit Tomaten und Paprika"}},
+  {cat:"c1",price:900,
+   names:{tr:"Kuzu Kavurma",en:"Sautéed Lamb",ru:"Жареная баранина",de:"Gebratenes Lammfleisch"},
+   descs:{tr:"Kuzu etiyle soğan, biber ve baharatların yüksek ateşte kavurulmasıyla hazırlanan sulu et yemeği",
+          en:"Tender lamb pieces sautéed with onions, peppers and aromatic spices",
+          ru:"Нежные кусочки баранины, обжаренные с луком, перцем и ароматными специями",
+          de:"Zartes Lammfleisch in Stücken mit Zwiebeln, Paprika und Gewürzen"}},
+  {cat:"c1",price:1100,
+   names:{tr:"Mantar Soslu Biftek",en:"Steak with Mushroom Sauce",ru:"Стейк с грибным соусом",de:"Rindersteak mit Pilzsoße"},
+   descs:{tr:"Kalın dilim dana biftek üzerine kremalı mantar sosu dökülerek servis edilen özel ızgara",
+          en:"Grilled beef steak topped with rich creamy mushroom sauce",
+          ru:"Жареный говяжий стейк с насыщенным сливочно-грибным соусом",
+          de:"Gegrilltes Rindersteak mit reichhaltiger cremiger Pilzsoße"}},
+  {cat:"c1",price:1100,
+   names:{tr:"Kuzu Pirzola",en:"Lamb Chops",ru:"Бараньи отбивные",de:"Lammkoteletts"},
+   descs:{tr:"Taze kuzu pirzolasının közde pişirilerek kekik ve baharatlarla tatlandırıldığı geleneksel ızgara",
+          en:"Juicy lamb chops grilled over charcoal, seasoned with fresh herbs",
+          ru:"Сочные бараньи котлеты на кости, жареные на углях с травами",
+          de:"Saftige Lammkoteletts vom Holzkohlegrill, mit Kräutern gewürzt"}},
+  {cat:"c1",price:1000,
+   names:{tr:"Fırında Etli Kuzu Güveç",en:"Baked Lamb Stew",ru:"Запечённое рагу из баранины",de:"Geschmorter Lammtopf"},
+   descs:{tr:"Kuzu eti, patates, domates ve biberin fırında yavaş pişirildiği geleneksel güveç",
+          en:"Slow-roasted lamb with vegetables in a traditional clay pot",
+          ru:"Баранина с овощами, медленно запечённая в традиционном глиняном горшочке",
+          de:"Langsam gegarter Lammeintopf mit Gemüse im Tontopf"}},
+
+  // ── Tavuk Yemekleri ───────────────────────────────────────────────────────────
+  {cat:"c2",price:330,
+   names:{tr:"Tavuk But Şiş Servis",en:"Chicken Thigh Skewer Plate",ru:"Шашлык из куриных бёдер",de:"Hähnchenschenkel-Spieß-Teller"},
+   descs:{tr:"Marine edilmiş tavuk but etinin şişte közlenerek pilav ve salatayla servis edildiği klasik ızgara tabağı",
+          en:"Marinated boneless chicken thighs grilled on skewer, juicy and chargrilled",
+          ru:"Маринованные куриные бёдра без кости на шампуре, сочные и ароматные",
+          de:"Marinierte Hähnchenschenkel ohne Knochen, saftig vom Grill"}},
+  {cat:"c2",price:330,
+   names:{tr:"Tavuk Izgara",en:"Grilled Chicken Breast",ru:"Куриная грудка гриль",de:"Gegrilltes Hähnchenbrustfilet"},
+   descs:{tr:"Tüm tavuk göğüs filetosunun baharatlı marinasyonla közde pişirildiği hafif ızgara",
+          en:"Whole chicken breast fillet, lightly seasoned and chargrilled",
+          ru:"Целое куриное филе, слегка приправленное и жареное на гриле",
+          de:"Hähnchenbrustfilet, leicht gewürzt und vom Grill"}},
+  {cat:"c2",price:450,
+   names:{tr:"Yaprak Kanat Izgara",en:"Grilled Butterfly Chicken Wings",ru:"Куриные крылышки гриль",de:"Gegrillte Hähnchenflügel"},
+   descs:{tr:"Açılarak marine edilmiş tavuk kanatlarının közde kızartılmasıyla hazırlanan çıtır ızgara",
+          en:"Crispy butterflied chicken wings, marinated with herbs and chargrilled",
+          ru:"Хрустящие куриные крылышки на гриле, маринованные с травами",
+          de:"Knusprige gegrillte Hähnchenflügel, mit Kräutern mariniert"}},
+  {cat:"c2",price:300,
+   names:{tr:"Pilav Üstü Tavuk",en:"Chicken over Rice",ru:"Курица с рисом",de:"Hähnchen auf Reis"},
+   descs:{tr:"Tereyağlı pirinç pilavının üzerine servis edilen sulu ızgara tavuk parçaları",
+          en:"Tender grilled chicken pieces served on a bed of fluffy buttered rice",
+          ru:"Нежные кусочки курицы-гриль на подушке из рассыпчатого риса",
+          de:"Zartes Grillhähnchen auf lockerem Butterreis"}},
+  {cat:"c2",price:380,
+   names:{tr:"Barbekü Soslu Tavuk",en:"BBQ Chicken",ru:"Курица в соусе барбекю",de:"BBQ-Hähnchen"},
+   descs:{tr:"Tatlı ve dumanlı barbekü sosuyla pişirilmiş tavuk; yanında patates kızartması ve salatayla gelir",
+          en:"Chicken grilled with smoky barbecue glaze, served with fries and salad",
+          ru:"Курица, жареная под дымным соусом барбекю, с картошкой и салатом",
+          de:"Hähnchen mit rauchiger Barbecue-Glasur, mit Pommes und Salat"}},
+  {cat:"c2",price:380,
+   names:{tr:"Mantar Soslu Tavuk",en:"Chicken with Mushroom Sauce",ru:"Курица с грибным соусом",de:"Hähnchen mit Pilzsoße"},
+   descs:{tr:"Tavada pişirilmiş tavuk göğsü üzerine kremalı mantar ve kekik sosunun döküldüğü lezzetli tabak",
+          en:"Pan-fried chicken breast in a creamy mushroom and herb sauce",
+          ru:"Жареное куриное филе в сливочном соусе с грибами и зеленью",
+          de:"Gebratenes Hähnchenbrustfilet in cremiger Pilz-Kräuter-Soße"}},
+  {cat:"c2",price:400,
+   names:{tr:"Köri Soslu Tavuk",en:"Chicken Curry",ru:"Курица карри",de:"Hähnchen-Curry"},
+   descs:{tr:"Hindistan usulü köri baharatlarıyla hazırlanmış aromalı tavuk sosu; pilav ile servis edilir",
+          en:"Chicken in a fragrant curry sauce with rice, inspired by Indian flavors",
+          ru:"Курица в ароматном соусе карри с рисом в индийском стиле",
+          de:"Hähnchen in würziger Curry-Soße mit Reis, von indischen Aromen inspiriert"}},
+  {cat:"c2",price:500,
+   names:{tr:"Fırında Tavuk Güveci",en:"Baked Chicken Casserole",ru:"Запечённое куриное рагу",de:"Hähnchen-Auflauf"},
+   descs:{tr:"Mevsim sebzeleriyle birlikte fırında yavaş pişirilen bütünleşik tavuk güveci",
+          en:"Chicken with seasonal vegetables baked slowly in a clay pot",
+          ru:"Курица с сезонными овощами, запечённая в глиняном горшочке",
+          de:"Hähnchen mit Saisongemüse langsam im Tontopf gebacken"}},
+  {cat:"c2",price:320,
+   names:{tr:"Tavuk Kavurma",en:"Sautéed Chicken",ru:"Жареная курица",de:"Gebratenes Hähnchen"},
+   descs:{tr:"Tavuk parçalarının soğan, biber ve domatesle yüksek ateşte kavurulmasıyla hazırlanan günlük lezzet",
+          en:"Chicken pieces sautéed with onions, peppers and tomatoes until golden",
+          ru:"Кусочки курицы, обжаренные с луком, перцем и томатами до золотистого цвета",
+          de:"Hähnchenteile angebraten mit Zwiebeln, Paprika und Tomaten"}},
+
+  // ── Dürümler ─────────────────────────────────────────────────────────────────
+  {cat:"c3",price:200,
+   names:{tr:"Adana Dürüm",en:"Adana Kebab Wrap",ru:"Адана-кебаб в лаваше",de:"Adana Kebab Wrap"},
+   descs:{tr:"Acılı Adana köftesinin közden çıkınca ince lavaşa sarıldığı, domates, soğan ve maydanozla tamamlanan dürüm",
+          en:"Spiced ground lamb rolled in thin flatbread with salad and sauce",
+          ru:"Острый шашлык из фарша, завёрнутый в тонкий лаваш с салатом и соусом",
+          de:"Würziger Hackfleischspieß im Fladenbrot mit Salat und Soße"}},
+  {cat:"c3",price:270,
+   names:{tr:"Kuzu Şiş Dürüm",en:"Lamb Skewer Wrap",ru:"Шашлык из баранины в лаваше",de:"Lammspieß-Wrap"},
+   descs:{tr:"Közde pişirilmiş kuzu şiş etinin taze sebzeler ve sosla lavaşa sarıldığı doyurucu dürüm",
+          en:"Marinated lamb on skewer wrapped in flatbread with fresh vegetables",
+          ru:"Маринованная баранина на шампуре в лаваше со свежими овощами",
+          de:"Mariniertes Lammfleisch vom Spieß im Fladenbrot mit frischem Gemüse"}},
+  {cat:"c3",price:270,
+   names:{tr:"Kuzu Ciğer Şiş Dürüm",en:"Lamb Liver Skewer Wrap",ru:"Шашлык из бараньей печени в лаваше",de:"Lammsleber-Wrap"},
+   descs:{tr:"Izgara kuzu ciğerinin sumak soğanı ve taze otlarla lavaşa sarıldığı, yöresel tatta dürüm",
+          en:"Grilled lamb liver in flatbread with onion, herbs and sumac",
+          ru:"Жареная баранья печень в лаваше с луком, зеленью и сумахом",
+          de:"Gegrillte Lammsleber im Fladenbrot mit Zwiebeln, Kräutern und Sumach"}},
+  {cat:"c3",price:220,
+   names:{tr:"Urfa Dürüm",en:"Urfa Kebab Wrap",ru:"Урфа-кебаб в лаваше",de:"Urfa Kebab Wrap"},
+   descs:{tr:"Az baharatlı Urfa usulü kıyma kebabının ince lavaşa sarıldığı hafif acılı dürüm",
+          en:"Mildly spiced lamb kebab from Urfa, wrapped in flatbread",
+          ru:"Мягкий шашлык по-урфийски, завёрнутый в лаваш",
+          de:"Mild gewürzter Urfa-Kebab im Fladenbrot"}},
+  {cat:"c3",price:200,
+   names:{tr:"Köfte Dürüm",en:"Meatball Wrap",ru:"Кёфте в лаваше",de:"Köfte-Wrap"},
+   descs:{tr:"Izgara köftenin domates ve maydanozla lavaşa sarıldığı klasik ve doyurucu dürüm",
+          en:"Grilled Turkish meatballs in flatbread with tomato and parsley",
+          ru:"Жареные турецкие котлеты в лаваше с томатом и петрушкой",
+          de:"Gegrillte Köfte im Fladenbrot mit Tomate und Petersilie"}},
+  {cat:"c3",price:180,
+   names:{tr:"Tavuk But Şiş Dürüm",en:"Chicken Thigh Wrap",ru:"Куриное бедро в лаваше",de:"Hähnchenschenkel-Wrap"},
+   descs:{tr:"Marine edilmiş tavuk but şişinin yeşillikler ve yoğurtlu sosla lavaşa sarıldığı pratik dürüm",
+          en:"Grilled marinated chicken thigh in flatbread with lettuce and sauce",
+          ru:"Жареное маринованное куриное бедро в лаваше с салатом и соусом",
+          de:"Gegrillter marinierter Hähnchenschenkel im Fladenbrot mit Salat"}},
+  {cat:"c3",price:200,
+   names:{tr:"Tavuklu Fajita Dürüm",en:"Chicken Fajita Wrap",ru:"Куриная фахита",de:"Chicken Fajita Wrap"},
+   descs:{tr:"Baharatlı tavuk şeritleriyle biber ve soğanın Meksika usulü lavaşa sarıldığı fajita dürüm",
+          en:"Seasoned chicken strips with peppers and onions, wrapped Tex-Mex style",
+          ru:"Полоски курицы с перцем и луком, завёрнутые в стиле тех-мекс",
+          de:"Gewürzte Hähnchenstreifen mit Paprika und Zwiebeln im Tex-Mex-Stil"}},
+  {cat:"c3",price:280,
+   names:{tr:"Etli Fajita Dürüm",en:"Beef Fajita Wrap",ru:"Говяжья фахита",de:"Beef Fajita Wrap"},
+   descs:{tr:"Sote et şeritleriyle renkli biber ve soğanın sıcak tortillaya sarıldığı dolu dolu fajita",
+          en:"Juicy beef strips with sautéed peppers and onions in a warm tortilla",
+          ru:"Сочные полоски говядины с тушёным перцем и луком в тёплой тортилье",
+          de:"Saftige Rindfleischstreifen mit Paprika und Zwiebeln in warmer Tortilla"}},
+  {cat:"c3",price:160,
+   names:{tr:"Tavuk Dürüm",en:"Chicken Wrap",ru:"Куриный ролл",de:"Hähnchen-Wrap"},
+   descs:{tr:"Izgara tavuk şeritlerinin taze salata ve yoğurtlu sosla ince lavaşa sarıldığı hafif dürüm",
+          en:"Grilled chicken strips in flatbread with fresh salad and yogurt sauce",
+          ru:"Жареные полоски курицы в лаваше со свежим салатом и йогуртовым соусом",
+          de:"Gegrillte Hähnchenstreifen im Fladenbrot mit Salat und Joghurtsoße"}},
+  {cat:"c3",price:180,
+   names:{tr:"Ekmek Arası Tavuk",en:"Chicken Sandwich",ru:"Куриный бургер",de:"Hähnchen-Sandwich"},
+   descs:{tr:"Izgara tavuk göğsünün marul, domates ve özel sosla ekmek arasına yerleştirildiği doyurucu sandviç",
+          en:"Grilled chicken breast in crispy bread with lettuce, tomato and sauce",
+          ru:"Жареная куриная грудка в хрустящей булочке с салатом, томатом и соусом",
+          de:"Gegrilltes Hähnchenbrustfilet im knusprigen Brot mit Salat und Soße"}},
+  {cat:"c3",price:230,
+   names:{tr:"Ekmek Arası Köfte",en:"Meatball Sandwich",ru:"Кёфте в булочке",de:"Köfte-Sandwich"},
+   descs:{tr:"Izgara köftenin sote sebzeler ve domates sosuyla ekmek arasına hazırlandığı klasik sandviç",
+          en:"Turkish köfte in bread with grilled vegetables and tomato sauce",
+          ru:"Турецкое кёфте в хлебе с жареными овощами и томатным соусом",
+          de:"Türkisches Köfte im Brot mit gegrilltem Gemüse und Tomatensoße"}},
+
+  // ── Kahvaltı ─────────────────────────────────────────────────────────────────
+  {cat:"c4",price:300,
+   names:{tr:"Kahvaltı Tabağı",en:"Breakfast Plate",ru:"Тарелка завтрака",de:"Frühstücksteller"},
+   descs:{tr:"Kaşar, beyaz peynir, zeytin, domates, salatalık, bal, reçel ve yumurtadan oluşan eksiksiz Türk kahvaltısı",
+          en:"Classic Turkish breakfast — cheese, olives, eggs, tomato, cucumber and tea",
+          ru:"Классический турецкий завтрак: сыр, оливки, яйца, томат, огурец и чай",
+          de:"Klassisches türkisches Frühstück mit Käse, Oliven, Eiern, Tomate und Gurke"}},
+  {cat:"c4",price:190,
+   names:{tr:"Peynirli Omlet",en:"Cheese Omelette",ru:"Омлет с сыром",de:"Käse-Omelett"},
+   descs:{tr:"Bol erimiş kaşar peyniriyle hazırlanan yumuşak ve kabarık omlet",
+          en:"Fluffy omelette filled with melted Turkish kaşar cheese",
+          ru:"Пышный омлет с расплавленным турецким сыром кашар",
+          de:"Luftiges Omelett mit geschmolzenem türkischem Kaşar-Käse"}},
+  {cat:"c4",price:230,
+   names:{tr:"Karışık Omlet",en:"Mixed Omelette",ru:"Смешанный омлет",de:"Gemischtes Omelett"},
+   descs:{tr:"Sucuk, biber, domates ve kaşarın birlikte pişirildiği doyurucu karışık omlet",
+          en:"Omelette with sucuk sausage, peppers, tomatoes and cheese",
+          ru:"Омлет с суджуком, перцем, томатами и сыром",
+          de:"Omelett mit Sucuk, Paprika, Tomaten und Käse"}},
+  {cat:"c4",price:250,
+   names:{tr:"Sucuklu Yumurta",en:"Eggs with Sucuk",ru:"Яйца с суджуком",de:"Eier mit Sucuk"},
+   descs:{tr:"Dilimlenmiş Türk sucuğuyla birlikte kavurulmuş sahanda yumurta",
+          en:"Pan-fried eggs with sliced Turkish spiced sausage",
+          ru:"Яичница с нарезанной турецкой острой колбасой суджук",
+          de:"Spiegeleier mit in Scheiben geschnittener türkischer Sucuk-Wurst"}},
+  {cat:"c4",price:250,
+   names:{tr:"Ekmek Arası Sucuk",en:"Sucuk Sandwich",ru:"Сэндвич с суджуком",de:"Sucuk-Sandwich"},
+   descs:{tr:"Izgara sucuğun domates ve biberle ekmek arasına hazırlandığı pratik ve lezzetli ara öğün",
+          en:"Grilled Turkish spiced sausage in bread with tomato and pepper",
+          ru:"Жареная турецкая острая колбаса в хлебе с томатом и перцем",
+          de:"Gegrillte türkische Sucuk-Wurst im Brot mit Tomate und Paprika"}},
+  {cat:"c4",price:200,
+   names:{tr:"Menemen",en:"Menemen",ru:"Менемен",de:"Menemen"},
+   descs:{tr:"Domates, yeşil biber ve baharatlarla pişirilen geleneksel Türk sahanda yumurtası",
+          en:"Traditional Turkish scrambled eggs with tomatoes, green peppers and spices",
+          ru:"Традиционная турецкая яичница с томатами, зелёным перцем и специями",
+          de:"Traditionelles türkisches Rührei mit Tomaten, grüner Paprika und Gewürzen"}},
+  {cat:"c4",price:230,
+   names:{tr:"Sucuklu Menemen",en:"Menemen with Sucuk",ru:"Менемен с суджуком",de:"Menemen mit Sucuk"},
+   descs:{tr:"Geleneksel menemenin üzerine sucuk eklenerek daha doyurucu hale getirilmiş sevilen sabah lezzeti",
+          en:"Turkish scrambled eggs with tomatoes, peppers and spiced sausage",
+          ru:"Турецкая яичница с томатами, перцем и острой колбасой суджук",
+          de:"Türkisches Rührei mit Tomaten, Paprika und Sucuk-Wurst"}},
+  {cat:"c4",price:180,
+   names:{tr:"Sahanda Yumurta",en:"Pan-fried Eggs",ru:"Яичница на сковороде",de:"Spiegeleier aus der Pfanne"},
+   descs:{tr:"Tereyağında kızartılmış bol sarılı sahanda yumurta; taze ekmekle servis edilir",
+          en:"Eggs fried sunny-side up in butter, served with fresh bread",
+          ru:"Яйца, жаренные на сливочном масле, подаются со свежим хлебом",
+          de:"In Butter gebratene Spiegeleier, mit frischem Brot serviert"}},
+  {cat:"c4",price:130,
+   names:{tr:"Kaşar Peynirli Tost",en:"Kaşar Cheese Toast",ru:"Тост с сыром кашар",de:"Kaşar-Käse-Toast"},
+   descs:{tr:"İçi erimiş kaşar peyniriyle dolu, dışı kızarmış klasik tost",
+          en:"Golden toasted bread with melted kaşar cheese inside",
+          ru:"Хрустящий тост с расплавленным турецким сыром кашар",
+          de:"Geröstetes Brot mit geschmolzenem Kaşar-Käse"}},
+  {cat:"c4",price:130,
+   names:{tr:"Karışık Tost",en:"Mixed Toast",ru:"Смешанный тост",de:"Gemischter Toast"},
+   descs:{tr:"Kaşar peyniri, salam ve sebzelerle hazırlanan doyurucu karışık tost",
+          en:"Toasted bread with cheese, salami and vegetables",
+          ru:"Поджаренный хлеб с сыром, салями и овощами",
+          de:"Geröstetes Brot mit Käse, Salami und Gemüse"}},
+  {cat:"c4",price:180,
+   names:{tr:"Yum. Sucuklu Kaşar Peynirli Tost",en:"Egg, Sucuk & Cheese Toast",ru:"Тост с яйцом, суджуком и сыром",de:"Ei-Sucuk-Käse-Toast"},
+   descs:{tr:"Yumurta, sucuk ve kaşar peynirinin bir arada kızartıldığı besleyici ve doyurucu tost",
+          en:"Toast loaded with egg, Turkish spiced sausage and melted kaşar cheese",
+          ru:"Тост с яйцом, острой колбасой суджук и сыром кашар",
+          de:"Toast mit Ei, türkischer Sucuk-Wurst und Kaşar-Käse"}},
+  {cat:"c4",price:300,
+   names:{tr:"Kıymalı Yumurta",en:"Eggs with Minced Meat",ru:"Яйца с мясным фаршем",de:"Eier mit Hackfleisch"},
+   descs:{tr:"Baharatlı kıymanın biber ve domatesle kavurulup yumurtayla pişirildiği sıcak ve doyurucu tabak",
+          en:"Scrambled eggs cooked with spiced ground lamb, peppers and tomatoes",
+          ru:"Яичница с пряным фаршем из баранины, перцем и томатами",
+          de:"Rührei mit gewürztem Lammhackfleisch, Paprika und Tomaten"}},
+
+  // ── Çorbalar ─────────────────────────────────────────────────────────────────
+  {cat:"c5",price:150,
+   names:{tr:"Mercimek Çorbası",en:"Red Lentil Soup",ru:"Суп из красной чечевицы",de:"Rote Linsensuppe"},
+   descs:{tr:"Kırmızı mercimeğin kimyon ve limonla tatlandırılarak blendırdan geçirildiği köy usulü çorba",
+          en:"Creamy red lentil soup seasoned with cumin, served with lemon",
+          ru:"Кремовый суп из красной чечевицы с тмином и лимоном",
+          de:"Cremige Rote-Linsen-Suppe mit Kreuzkümmel und Zitrone"}},
+  {cat:"c5",price:160,
+   names:{tr:"Tavuk Çorbası",en:"Chicken Soup",ru:"Куриный суп",de:"Hühnersuppe"},
+   descs:{tr:"Ev yapımı tavuk suyunun tel şehriye, havuç ve kerevizle pişirildiği şifalı çorba",
+          en:"Homestyle chicken broth with vegetables and vermicelli",
+          ru:"Домашний куриный бульон с овощами и вермишелью",
+          de:"Hausgemachte Hühnerbrühe mit Gemüse und Fadennudeln"}},
+
+  // ── Makarnalar ────────────────────────────────────────────────────────────────
+  {cat:"c6",price:300,
+   names:{tr:"Penne Bolanez",en:"Penne Bolognese",ru:"Пенне болоньезе",de:"Penne Bolognese"},
+   descs:{tr:"Kıymalı domates sosuyla pişirilmiş penne makarna; üzerine Parmesan rendesi serpilir",
+          en:"Penne pasta with classic minced meat sauce and Parmesan",
+          ru:"Паста пенне с классическим соусом из мясного фарша и пармезаном",
+          de:"Penne-Pasta mit klassischer Hackfleischsoße und Parmesan"}},
+  {cat:"c6",price:280,
+   names:{tr:"Penne Arabiata",en:"Penne Arrabbiata",ru:"Пенне аррабиата",de:"Penne Arrabbiata"},
+   descs:{tr:"Sarımsak ve kırmızı biberle hazırlanmış acılı domates sosunda pişirilmiş penne",
+          en:"Penne in spicy tomato sauce with garlic and chili",
+          ru:"Паста пенне в остром томатном соусе с чесноком и чили",
+          de:"Penne in scharfer Tomatensoße mit Knoblauch und Chili"}},
+  {cat:"c6",price:320,
+   names:{tr:"Kre. Tavuklu Mantarlı Penne",en:"Creamy Chicken & Mushroom Penne",ru:"Пенне с курицей и грибами в сливках",de:"Cremige Hähnchen-Pilz-Penne"},
+   descs:{tr:"Izgara tavuk ve mantarın kremalı sosiyle buluştuğu, üzerine rende peynir serpilen özel penne",
+          en:"Penne in rich cream sauce with grilled chicken and mushrooms",
+          ru:"Паста пенне в насыщенном сливочном соусе с курицей и грибами",
+          de:"Penne in reichhaltiger Sahnesoße mit Hähnchen und Pilzen"}},
+
+  // ── Pizza ─────────────────────────────────────────────────────────────────────
+  {cat:"c7",price:350,
+   names:{tr:"Karışık Pizza",en:"Mixed Pizza",ru:"Смешанная пицца",de:"Gemischte Pizza"},
+   descs:{tr:"Salam, sucuk, biber, mantar ve mozarella peyniriyle dolu cömert karışık pizza",
+          en:"Pizza with salami, sausage, peppers, mushrooms and mozzarella",
+          ru:"Пицца с салями, колбасой, перцем, грибами и моцареллой",
+          de:"Pizza mit Salami, Wurst, Paprika, Pilzen und Mozzarella"}},
+  {cat:"c7",price:380,
+   names:{tr:"Tavuklu Pizza",en:"Chicken Pizza",ru:"Пицца с курицей",de:"Hähnchen-Pizza"},
+   descs:{tr:"Izgara tavuk, renkli biber ve özel sosla hazırlanan tavuklu pizza",
+          en:"Pizza topped with grilled chicken, peppers and special sauce",
+          ru:"Пицца с жареной курицей, перцем и специальным соусом",
+          de:"Pizza mit gegrilltem Hähnchen, Paprika und Spezialsoße"}},
+  {cat:"c7",price:400,
+   names:{tr:"Tonbalıklı Pizza",en:"Tuna Pizza",ru:"Пицца с тунцом",de:"Thunfisch-Pizza"},
+   descs:{tr:"Ton balığı, soğan, zeytin ve mozarella peyniriyle hazırlanan deniz ürünlü pizza",
+          en:"Pizza with tuna, onions, olives and mozzarella",
+          ru:"Пицца с тунцом, луком, оливками и моцареллой",
+          de:"Pizza mit Thunfisch, Zwiebeln, Oliven und Mozzarella"}},
+  {cat:"c7",price:320,
+   names:{tr:"Sucuklu Pizza",en:"Sucuk Pizza",ru:"Пицца с суджуком",de:"Sucuk-Pizza"},
+   descs:{tr:"Dilimlenmiş Türk sucuğu ve erimiş mozarella peyniriyle hazırlanan baharatlı pizza",
+          en:"Pizza with sliced Turkish spiced sausage and mozzarella",
+          ru:"Пицца с нарезанной турецкой колбасой суджук и моцареллой",
+          de:"Pizza mit türkischer Sucuk-Wurst und Mozzarella"}},
+  {cat:"c7",price:300,
+   names:{tr:"Margarita Pizza",en:"Margherita Pizza",ru:"Пицца Маргарита",de:"Margherita Pizza"},
+   descs:{tr:"Domates sosu, taze mozarella ve fesleğenle hazırlanan sade ve lezzetli klasik pizza",
+          en:"Classic pizza with tomato sauce, mozzarella and fresh basil",
+          ru:"Классическая пицца с томатным соусом, моцареллой и свежим базиликом",
+          de:"Klassische Pizza mit Tomatensoße, Mozzarella und frischem Basilikum"}},
+  {cat:"c7",price:430,
+   names:{tr:"Kavurmalı Pizza",en:"Kavurma Pizza",ru:"Пицца с жареной бараниной",de:"Kavurma-Pizza"},
+   descs:{tr:"Kavurma et parçaları, biber ve mozarella peyniriyle hazırlanan özel pizza",
+          en:"Pizza topped with sautéed lamb pieces, peppers and mozzarella",
+          ru:"Пицца с кусочками жареной баранины, перцем и моцареллой",
+          de:"Pizza mit gebratenen Lammstücken, Paprika und Mozzarella"}},
+
+  // ── Salatalar & Mezeler ───────────────────────────────────────────────────────
+  {cat:"c8",price:200,
+   names:{tr:"Mevsim Salata",en:"Garden Salad",ru:"Салат из сезонных овощей",de:"Gemischter Blattsalat"},
+   descs:{tr:"Salatalık, domates, soğan ve mevsim yeşilliklerinin ev yapımı sos eşliğinde sunulduğu taze salata",
+          en:"Fresh seasonal greens with cucumber, tomato, onion and house dressing",
+          ru:"Свежие сезонные овощи с огурцом, томатом, луком и фирменной заправкой",
+          de:"Frisches Saisongemüse mit Gurke, Tomate, Zwiebel und Hausdressing"}},
+  {cat:"c8",price:200,
+   names:{tr:"Çoban Salatası",en:"Shepherd's Salad",ru:"Пастуший салат",de:"Hirtensalat"},
+   descs:{tr:"Domates, salatalık, biber ve maydanozun zeytinyağı ve limonla tatlandırıldığı klasik Türk salatası",
+          en:"Diced tomato, cucumber, pepper and parsley with olive oil and lemon",
+          ru:"Нарезанные кубиками томаты, огурец, перец и петрушка с оливковым маслом",
+          de:"Gewürfelte Tomaten, Gurke, Paprika und Petersilie mit Olivenöl und Zitrone"}},
+  {cat:"c8",price:320,
+   names:{tr:"Izgara Tavuk Salatası",en:"Grilled Chicken Salad",ru:"Салат с куриной грудкой гриль",de:"Gegrillter Hähnchensalat"},
+   descs:{tr:"Izgara tavuk göğsü dilimlerinin mevsim yeşillikleri ve balzamik sosla sunulduğu hafif salata",
+          en:"Sliced grilled chicken breast over mixed greens with balsamic dressing",
+          ru:"Нарезанная куриная грудка-гриль на свежих листьях с бальзамической заправкой",
+          de:"Gegrilltes Hähnchenbrustfilet auf Blattsalat mit Balsamico-Dressing"}},
+  {cat:"c8",price:350,
+   names:{tr:"Tonbalık Salata",en:"Tuna Salad",ru:"Салат с тунцом",de:"Thunfischsalat"},
+   descs:{tr:"Ton balığı, mısır, zeytin, domates ve marul üzerine limon soslu hafif ve besleyici salata",
+          en:"Tuna with corn, olives, tomato and lettuce, with lemon dressing",
+          ru:"Тунец с кукурузой, оливками, томатом и салатом с лимонной заправкой",
+          de:"Thunfisch mit Mais, Oliven, Tomate und Salat mit Zitronendressing"}},
+  {cat:"c8",price:100,
+   names:{tr:"Kırmızı Lahana Salatası",en:"Red Cabbage Salad",ru:"Салат из красной капусты",de:"Rotkohl-Salat"},
+   descs:{tr:"İnce kıyılmış kırmızı lahanaya zeytinyağı, limon ve taze ot eklenerek hazırlanan çıtır salata",
+          en:"Thinly sliced red cabbage with lemon, olive oil and fresh herbs",
+          ru:"Тонко нарезанная красная капуста с лимоном, оливковым маслом и зеленью",
+          de:"Dünn geschnittener Rotkohl mit Zitrone, Olivenöl und frischen Kräutern"}},
+  {cat:"c8",price:130,
+   names:{tr:"Antep Ezme",en:"Antep Ezme",ru:"Антеп эзме",de:"Antep Ezme"},
+   descs:{tr:"Domates, biber, ceviz ve nar ekşisinin birlikte dövülerek hazırlandığı Gaziantep'e özgü acılı ezme",
+          en:"Fiery tomato and pepper paste with walnuts and pomegranate molasses, from Gaziantep",
+          ru:"Острая паста из томатов и перца с грецкими орехами и гранатовым соусом по-газиантепски",
+          de:"Scharfe Tomaten-Paprika-Paste mit Walnüssen und Granatapfelsirup aus Gaziantep"}},
+  {cat:"c8",price:130,
+   names:{tr:"Haydari",en:"Haydari",ru:"Хайдари",de:"Haydari"},
+   descs:{tr:"Süzme yoğurdun sarımsak, nane ve dereotyla karıştırılarak hazırlandığı soğuk ve ferahlatıcı meze",
+          en:"Thick strained yogurt dip with garlic, mint and dill — a classic Turkish meze",
+          ru:"Густой йогурт с чесноком, мятой и укропом — классическая турецкая закуска",
+          de:"Dickflüssiger Joghurtdip mit Knoblauch, Minze und Dill — türkische Meze-Klassiker"}},
+
+  // ── Kızartmalar ───────────────────────────────────────────────────────────────
+  {cat:"c9",price:150,
+   names:{tr:"Patates Kızartması",en:"French Fries",ru:"Картофель фри",de:"Pommes frites"},
+   descs:{tr:"Altın sarısı, çıtır çıtır kızarmış patates; hafifçe tuzlanmış olarak servis edilir",
+          en:"Golden crispy potato fries, lightly salted",
+          ru:"Золотистый хрустящий картофель фри, слегка подсоленный",
+          de:"Goldene knusprige Pommes, leicht gesalzen"}},
+
+  // ── Vejetaryen ────────────────────────────────────────────────────────────────
+  {cat:"c10",price:150,
+   names:{tr:"Mercimek Çorbası",en:"Red Lentil Soup",ru:"Суп из красной чечевицы",de:"Rote Linsensuppe"},
+   descs:{tr:"Kırmızı mercimeğin kimyon ve limonla tatlandırılarak blendırdan geçirildiği köy usulü çorba",
+          en:"Creamy red lentil soup seasoned with cumin, served with lemon",
+          ru:"Кремовый суп из красной чечевицы с тмином и лимоном",
+          de:"Cremige Rote-Linsen-Suppe mit Kreuzkümmel und Zitrone"}},
+  {cat:"c10",price:220,
+   names:{tr:"Sebzeli Omlet",en:"Vegetable Omelette",ru:"Омлет с овощами",de:"Gemüse-Omelett"},
+   descs:{tr:"Mantar, biber, domates ve ıspanakla hazırlanan bol içerikli vejetaryen omlet",
+          en:"Fluffy omelette with mushrooms, peppers, tomatoes and spinach",
+          ru:"Пышный омлет с грибами, перцем, томатами и шпинатом",
+          de:"Luftiges Omelett mit Pilzen, Paprika, Tomaten und Spinat"}},
+  {cat:"c10",price:180,
+   names:{tr:"Sebzeli Peynirli Tost",en:"Vegetable & Cheese Toast",ru:"Тост с сыром и овощами",de:"Gemüse-Käse-Toast"},
+   descs:{tr:"Erimiş peynir, közlenmiş biber ve mantarla hazırlanan doyurucu vejetaryen tost",
+          en:"Toasted bread with melted cheese, roasted peppers and mushrooms",
+          ru:"Поджаренный хлеб с расплавленным сыром, жареным перцем и грибами",
+          de:"Toast mit geschmolzenem Käse, gerösteter Paprika und Pilzen"}},
+  {cat:"c10",price:330,
+   names:{tr:"Sebze Sote",en:"Sautéed Vegetables",ru:"Овощное соте",de:"Sautiertes Gemüse"},
+   descs:{tr:"Mevsim sebzelerinin zeytinyağı, sarımsak ve taze otlarla sote edildiği hafif ana yemek",
+          en:"Seasonal vegetables sautéed with garlic, fresh herbs and olive oil",
+          ru:"Сезонные овощи, обжаренные с чесноком, зеленью и оливковым маслом",
+          de:"Saisonales Gemüse mit Knoblauch, Kräutern und Olivenöl angebraten"}},
+  {cat:"c10",price:180,
+   names:{tr:"Sebze Dürüm",en:"Vegetable Wrap",ru:"Ролл с овощами",de:"Gemüse-Wrap"},
+   descs:{tr:"Izgara mevsim sebzelerinin yoğurtlu sosla ince lavaşa sarıldığı vegan dostu dürüm",
+          en:"Grilled seasonal vegetables in flatbread with yogurt sauce",
+          ru:"Жареные сезонные овощи в лаваше с йогуртовым соусом",
+          de:"Gegrilltes Saisongemüse im Fladenbrot mit Joghurtsoße"}},
+  {cat:"c10",price:350,
+   names:{tr:"Sebzeli Pizza",en:"Vegetable Pizza",ru:"Вегетарианская пицца",de:"Gemüsepizza"},
+   descs:{tr:"Közlenmiş biber, mantar, zeytin, kabak ve mozarella ile hazırlanan vejetaryen pizza",
+          en:"Pizza with roasted peppers, mushrooms, olives, zucchini and mozzarella",
+          ru:"Пицца с жареным перцем, грибами, оливками, кабачками и моцареллой",
+          de:"Pizza mit gerösteter Paprika, Pilzen, Oliven, Zucchini und Mozzarella"}},
+  {cat:"c10",price:300,
+   names:{tr:"Sebzeli Makarna",en:"Vegetable Pasta",ru:"Паста с овощами",de:"Gemüsepasta"},
+   descs:{tr:"Sote mevsim sebzelerinin domates ya da krema sosuyla pişirilen hafif vejetaryen makarna",
+          en:"Pasta with sautéed seasonal vegetables in tomato or cream sauce",
+          ru:"Паста с тушёными сезонными овощами в томатном или сливочном соусе",
+          de:"Pasta mit sautiertem Saisongemüse in Tomaten- oder Sahnesoße"}},
+
+  // ── Tatlılar ─────────────────────────────────────────────────────────────────
+  {cat:"c11",price:200,
+   names:{tr:"Künefe",en:"Künefe",ru:"Кюнефе",de:"Künefe"},
+   descs:{tr:"Kadayıf tabanının üzerine taze peynir yerleştirilerek fırınlanan, şerbete batırılmış ve Antep fıstığıyla süslenen sıcak tatlı",
+          en:"Hot shredded pastry with molten cheese, soaked in syrup and topped with pistachios",
+          ru:"Горячий десерт из тонкого теста с сыром в сладком сиропе и фисташками",
+          de:"Heißes Dessert aus Kadayıf-Teig mit Käsefüllung, Zuckersirup und Pistazien"}},
+  {cat:"c11",price:250,
+   names:{tr:"Frambuazlı Cheesecake",en:"Raspberry Cheesecake",ru:"Чизкейк с малиной",de:"Himbeer-Cheesecake"},
+   descs:{tr:"Kremalı tabanın üzerine taze ahududu püresiyle yapılan ev yapımı cheesecake",
+          en:"Creamy baked cheesecake with fresh raspberry coulis",
+          ru:"Сливочный запечённый чизкейк со свежим малиновым кули",
+          de:"Cremiger gebackener Käsekuchen mit frischem Himbeercoulis"}},
+  {cat:"c11",price:250,
+   names:{tr:"Medavik",en:"Medovik (Honey Cake)",ru:"Медовик",de:"Medovik (Russischer Honigkuchen)"},
+   descs:{tr:"Bal ve krema katmanlarından oluşan Rus usulü ıslak pasta; hafif tatlı sevenlerin favorisi",
+          en:"Russian layered honey sponge cake with sweet cream — a beloved classic",
+          ru:"Слоёный медовый торт со сладким кремом — любимая русская классика",
+          de:"Schichtiger Honigkuchen mit süßer Creme — ein russischer Klassiker"}},
+
+  // ── Soğuk İçecekler ───────────────────────────────────────────────────────────
+  {cat:"c12",price:75,
+   names:{tr:"Pepsi Kutu",en:"Pepsi Can",ru:"Пепси (банка)",de:"Pepsi Dose"},
+   descs:{tr:"Soğuk servis edilen 330 ml Pepsi kutu",
+          en:"Chilled Pepsi cola, 330 ml can",
+          ru:"Охлаждённая Pepsi-кола, банка 330 мл",
+          de:"Gekühlte Pepsi Cola, 330-ml-Dose"}},
+  {cat:"c12",price:75,
+   names:{tr:"Şişe Pepsi",en:"Pepsi Bottle",ru:"Пепси (бутылка)",de:"Pepsi Flasche"},
+   descs:{tr:"Soğuk servis edilen 500 ml Pepsi şişe",
+          en:"Chilled Pepsi cola, 500 ml bottle",
+          ru:"Охлаждённая Pepsi-кола, бутылка 500 мл",
+          de:"Gekühlte Pepsi Cola, 500-ml-Flasche"}},
+  {cat:"c12",price:75,
+   names:{tr:"Ice Tea Şeftali",en:"Peach Iced Tea",ru:"Холодный чай с персиком",de:"Pfirsich-Eistee"},
+   descs:{tr:"Şeftali aromalı soğuk çay; serin ve ferahlatıcı",
+          en:"Refreshing chilled iced tea with natural peach flavour",
+          ru:"Освежающий холодный чай с натуральным персиковым вкусом",
+          de:"Erfrischender Eistee mit natürlichem Pfirsichgeschmack"}},
+  {cat:"c12",price:75,
+   names:{tr:"Ice Tea Limon",en:"Lemon Iced Tea",ru:"Холодный чай с лимоном",de:"Zitronen-Eistee"},
+   descs:{tr:"Limon aromalı soğuk çay; hafif ekşi ve ferahlatıcı",
+          en:"Refreshing chilled iced tea with lemon",
+          ru:"Освежающий холодный чай с лимоном",
+          de:"Erfrischender Eistee mit Zitronengeschmack"}},
+  {cat:"c12",price:75,
+   names:{tr:"Ice Tea Karpuz",en:"Watermelon Iced Tea",ru:"Холодный чай с арбузом",de:"Wassermelonen-Eistee"},
+   descs:{tr:"Karpuz aromalı soğuk çay; tatlı ve serinletici",
+          en:"Sweet and refreshing watermelon-flavoured iced tea",
+          ru:"Сладкий и освежающий чай с арбузным вкусом",
+          de:"Süßer und erfrischender Eistee mit Wassermelonenaroma"}},
+  {cat:"c12",price:75,
+   names:{tr:"Ice Tea Mango Ananas",en:"Mango Pineapple Iced Tea",ru:"Холодный чай Манго-Ананас",de:"Mango-Ananas-Eistee"},
+   descs:{tr:"Mango ve ananas aromalı tropikal soğuk çay",
+          en:"Tropical iced tea with mango and pineapple flavour",
+          ru:"Тропический холодный чай со вкусами манго и ананаса",
+          de:"Tropischer Eistee mit Mango- und Ananasaroma"}},
+  {cat:"c12",price:60,
+   names:{tr:"Gazoz",en:"Turkish Gazoz (Fizzy Drink)",ru:"Газоз",de:"Türkische Limonade (Gazoz)"},
+   descs:{tr:"Meyveli şurupla tatlandırılmış geleneksel Türk gazlı içeceği; soğuk servis edilir",
+          en:"Classic Turkish sparkling drink with fruity syrup, served chilled",
+          ru:"Классический турецкий газированный напиток с фруктовым сиропом",
+          de:"Klassisches türkisches Sprudelgetränk mit Fruchtsirup"}},
+  {cat:"c12",price:75,
+   names:{tr:"Kola Zero",en:"Cola Zero",ru:"Кола Зеро",de:"Cola Zero"},
+   descs:{tr:"Şekersiz soğuk kola; light tercihleri için",
+          en:"Sugar-free cola, served chilled",
+          ru:"Кола без сахара, подаётся охлаждённой",
+          de:"Zuckerfreie Cola, gut gekühlt"}},
+  {cat:"c12",price:45,
+   names:{tr:"Ayran Büyük",en:"Ayran (Large)",ru:"Айран (большой)",de:"Ayran (Groß)"},
+   descs:{tr:"Büyük boy soğuk ayran; yoğurttan yapılmış, hafif tuzlu ve serinletici geleneksel içecek",
+          en:"Traditional cold yogurt drink, lightly salted and refreshing — large size",
+          ru:"Традиционный холодный кисломолочный напиток с солью — большой размер",
+          de:"Traditionelles kaltes Joghurtgetränk, gesalzen und erfrischend — groß"}},
+  {cat:"c12",price:60,
+   names:{tr:"Şalgam",en:"Turnip Juice (Şalgam)",ru:"Шалгам (сок репы)",de:"Rübensaft (Şalgam)"},
+   descs:{tr:"Siyah havucun fermantasyonuyla hazırlanan, ekşi ve hafif acılı geleneksel Adana içeceği",
+          en:"Traditional fermented purple turnip drink, tangy and slightly spicy",
+          ru:"Традиционный ферментированный напиток из фиолетовой репы, кислый и острый",
+          de:"Traditionelles fermentiertes Rübengetränk, herb und leicht scharf"}},
+  {cat:"c12",price:40,
+   names:{tr:"Meyveli Soda Çeşitleri",en:"Fruit Soda (Various Flavors)",ru:"Фруктовая газировка (разные вкусы)",de:"Fruchtsprudel (verschiedene Sorten)"},
+   descs:{tr:"Limon, kiraz veya çilek aromalarından oluşan meyveli soda çeşitleri",
+          en:"Sparkling mineral water with fruit flavours — lemon, cherry or strawberry",
+          ru:"Газированная минеральная вода с фруктовыми вкусами — лимон, вишня или клубника",
+          de:"Sprudelwasser mit Fruchtgeschmack — Zitrone, Kirsche oder Erdbeere"}},
+  {cat:"c12",price:35,
+   names:{tr:"Sade Soda",en:"Plain Soda Water",ru:"Содовая",de:"Mineralwasser"},
+   descs:{tr:"Sade maden suyu; soğuk servis edilir",
+          en:"Still or sparkling mineral water, served chilled",
+          ru:"Минеральная газированная вода, подаётся охлаждённой",
+          de:"Stilles oder sprudelndes Mineralwasser, gut gekühlt"}},
+  {cat:"c12",price:25,
+   names:{tr:"Küçük Su",en:"Small Water",ru:"Маленькая вода",de:"Kleines Wasser"},
+   descs:{tr:"330 ml küçük boy soğuk su",
+          en:"Small 330 ml bottle of still mineral water",
+          ru:"Небольшая бутылка негазированной минеральной воды 330 мл",
+          de:"Kleine 330-ml-Flasche stilles Mineralwasser"}},
+
+  // ── Sıcak İçecekler ───────────────────────────────────────────────────────────
+  {cat:"c13",price:20,
+   names:{tr:"Demleme Çay",en:"Brewed Black Tea",ru:"Турецкий чёрный чай",de:"Aufgebrühter Schwarztee"},
+   descs:{tr:"Çift demlik sistemiyle hazırlanan ince belli bardakta sunulan geleneksel Türk siyah çayı",
+          en:"Traditional Turkish black tea brewed in a double teapot, served in a tulip glass",
+          ru:"Традиционный турецкий чёрный чай из двойного чайника, в стакане-тюльпане",
+          de:"Traditioneller türkischer Schwarztee aus dem Doppelteekessel, im Tulpenglas"}},
+  {cat:"c13",price:60,
+   names:{tr:"Nescafe Sade",en:"Black Nescafé",ru:"Нескафе чёрный",de:"Schwarzer Nescafé"},
+   descs:{tr:"Şekersiz sade Nescafe; klasik hazır kahve",
+          en:"Classic instant coffee served black, without sugar",
+          ru:"Классический растворимый кофе без сахара",
+          de:"Klassischer Instantkaffee, schwarz ohne Zucker"}},
+  {cat:"c13",price:60,
+   names:{tr:"Nescafe 3'ü Birarada",en:"3-in-1 Nescafé",ru:"Нескафе 3 в 1",de:"3-in-1 Nescafé"},
+   descs:{tr:"Kahve, süt tozu ve şekerin tek pakette bir araya geldiği pratik Nescafe",
+          en:"Instant coffee with milk and sugar combined in one sachet",
+          ru:"Растворимый кофе с молоком и сахаром в одном пакетике",
+          de:"Instantkaffee mit Milch und Zucker in einem Beutel"}},
+  {cat:"c13",price:80,
+   names:{tr:"Cappuccino Şekerli",en:"Cappuccino with Sugar",ru:"Капучино с сахаром",de:"Cappuccino mit Zucker"},
+   descs:{tr:"Espresso üzerine sıcak süt köpüğü eklenerek hazırlanan şekerli cappuccino",
+          en:"Espresso with steamed milk foam, sweetened",
+          ru:"Эспрессо со взбитым молоком, подслащённый",
+          de:"Espresso mit aufgeschäumter Milch, gesüßt"}},
+  {cat:"c13",price:60,
+   names:{tr:"Ihlamur",en:"Linden Blossom Tea",ru:"Липовый чай",de:"Lindenblütentee"},
+   descs:{tr:"Kurutulmuş ıhlamur çiçeklerinden demlenen, sakinleştirici ve şifalı bitki çayı",
+          en:"Soothing herbal tea brewed from dried linden flowers",
+          ru:"Успокаивающий травяной чай из сушёных цветков липы",
+          de:"Beruhigender Kräutertee aus getrockneten Lindenblüten"}},
+  {cat:"c13",price:60,
+   names:{tr:"Yeşil Çay",en:"Green Tea",ru:"Зелёный чай",de:"Grüner Tee"},
+   descs:{tr:"Antioksidan açısından zengin, hafif ve aromatik yeşil çay",
+          en:"Light and delicate green tea, naturally rich in antioxidants",
+          ru:"Лёгкий и нежный зелёный чай, богатый натуральными антиоксидантами",
+          de:"Leichter und zarter grüner Tee, reich an natürlichen Antioxidantien"}},
+  {cat:"c13",price:80,
+   names:{tr:"Türk Kahvesi",en:"Turkish Coffee",ru:"Турецкий кофе",de:"Türkischer Kaffee"},
+   descs:{tr:"Bakır cezvede köpüklü olarak demlenen geleneksel Türk kahvesi; yanında lokum ve su ile servis edilir",
+          en:"Finely ground coffee brewed in a copper pot, served with water and lokum",
+          ru:"Мелко молотый кофе в медной джезве, подаётся с водой и рахат-лукумом",
+          de:"Fein gemahlener Kaffee im Kupferkännchen, mit Wasser und Lokum"}},
+];
+
+// ─── State ────────────────────────────────────────────────────────────────────
+let currentLang = localStorage.getItem("qr_menu_lang") || "tr";
+
+function t(obj, field) {
+  return obj[field + "s"]?.[currentLang] || obj[field + "s"]?.["tr"] || "";
+}
+
+function fmt(price) {
+  return "₺" + (price % 1 === 0 ? price.toFixed(0) : price.toFixed(2));
+}
+
+// ─── Render language picker ───────────────────────────────────────────────────
+function renderLangPicker() {
+  const el = document.getElementById("lang-picker");
+  el.innerHTML = LANGUAGES.map(l => {
+    const m = LANG_META[l];
+    return `<button class="lang-btn${l === currentLang ? " active" : ""}" onclick="setLang('${l}')" title="${m.label}">
+      <span>${m.flag}</span><span class="lang-label">${m.label}</span>
+    </button>`;
+  }).join("");
+}
+
+// ─── Render category nav ──────────────────────────────────────────────────────
+function renderCatNav() {
+  const el = document.getElementById("cat-nav");
+  el.innerHTML = CATEGORIES.map(c => {
+    const n = c.names[currentLang] || c.names.tr;
+    const label = currentLang === "tr" ? n : `${n} (${c.names.tr})`;
+    return `<button class="cat-pill" id="pill-${c.id}" onclick="scrollToCategory('${c.id}')">${label}</button>`;
+  }).join("");
+}
+
+// ─── Render menu items ────────────────────────────────────────────────────────
+function renderMenu() {
+  const el = document.getElementById("content");
+  const grouped = CATEGORIES.map(cat => ({
+    cat,
+    items: ITEMS.filter(i => i.cat === cat.id)
+  })).filter(g => g.items.length > 0);
+
+  el.innerHTML = grouped.map(({cat, items}, gi) => `
+    <div class="cat-section" id="section-${cat.id}">
+      <h2 class="cat-title">${currentLang === "tr" ? (cat.names.tr) : ((cat.names[currentLang] || cat.names.tr) + " (" + cat.names.tr + ")")}</h2>
+      <div class="items-list">
+        ${items.map((item, ii) => {
+          const iName = item.names[currentLang] || item.names.tr;
+          const iLabel = currentLang === "tr" ? iName : iName + " (" + item.names.tr + ")";
+          const iDesc = item.descs[currentLang] || item.descs.tr;
+          return "<div class='item-card' style='animation-delay:" + (((gi * 4 + ii) % 8) * 0.05) + "s'><div class='item-info'><p class='item-name'>" + iLabel + "</p>" + (iDesc ? "<p class='item-desc'>" + iDesc + "</p>" : "") + "<p class='item-price'>" + fmt(item.price) + "</p></div></div>";
+        }).join("")}
+      </div>
+    </div>
+  `).join("");
+}
+
+// ─── Active category tracking ─────────────────────────────────────────────────
+let activecat = CATEGORIES[0].id;
+
+function setActivePill(catId) {
+  if (activecat === catId) return;
+  activecat = catId;
+  document.querySelectorAll(".cat-pill").forEach(el => el.classList.remove("active"));
+  const pill = document.getElementById("pill-" + catId);
+  if (pill) {
+    pill.classList.add("active");
+    pill.scrollIntoView({inline:"center", block:"nearest", behavior:"smooth"});
+  }
+}
+
+const headerH = 120;
+function scrollToCategory(catId) {
+  const el = document.getElementById("section-" + catId);
+  if (!el) return;
+  const top = el.getBoundingClientRect().top + window.pageYOffset - headerH - 8;
+  window.scrollTo({top, behavior:"smooth"});
+}
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id.replace("section-","");
+      setActivePill(id);
     }
   });
-},observerOpts);
+}, {rootMargin:`-${headerH + 8}px 0px -55% 0px`, threshold:0});
 
-sections.forEach(s=>observer.observe(s));
+function observeSections() {
+  document.querySelectorAll(".cat-section").forEach(el => observer.observe(el));
+}
 
-document.querySelectorAll('.menu-item').forEach((item,i)=>{
-  item.style.animationDelay=`${(i%8)*0.05}s`;
-});
+// ─── Language switch ──────────────────────────────────────────────────────────
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem("qr_menu_lang", lang);
+  renderLangPicker();
+  renderCatNav();
+  renderMenu();
+  observeSections();
+  document.documentElement.lang = lang;
+}
+
+// ─── Init ─────────────────────────────────────────────────────────────────────
+renderLangPicker();
+renderCatNav();
+renderMenu();
+observeSections();
+document.getElementById("pill-" + CATEGORIES[0].id)?.classList.add("active");
 </script>
-
 </body>
 </html>
